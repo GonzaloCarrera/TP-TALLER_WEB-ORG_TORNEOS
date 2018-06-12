@@ -12,6 +12,7 @@ public class Usuario {
 	private Long id;
 	private String username;
 	private String password;
+	private String email;
 	private Boolean esAdmin;
 	
 	public Long getId() {
@@ -37,6 +38,12 @@ public class Usuario {
 	}
 	public void setEsAdmin(Boolean esAdmin) {
 		this.esAdmin = esAdmin;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

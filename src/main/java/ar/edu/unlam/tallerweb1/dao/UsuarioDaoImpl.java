@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import ar.edu.unlam.tallerweb1.modelo.Usuario11;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -20,16 +20,21 @@ public class UsuarioDaoImpl implements UsuarioDao {
     private SessionFactory sessionFactory;
 
 	@Override
-	public Usuario11 consultarUsuario(Usuario11 usuario) {
+	public Usuario consultarUsuario(Usuario usuario) {
 
 		// Se obtiene la sesion asociada a la transaccion iniciada en el servicio que invoca a este metodo y se crea un criterio
 		// de busqueda de Usuario donde el email y password sean iguales a los del objeto recibido como parametro
 		// uniqueResult da error si se encuentran más de un resultado en la busqueda.
 		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario11) session.createCriteria(Usuario11.class)
+		return (Usuario) session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
 	}
-
+	
+	@Override
+	public void guardarUsuario(Usuario usuario) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(usuario);
+	}
 }
