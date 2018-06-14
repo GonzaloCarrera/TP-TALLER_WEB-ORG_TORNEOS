@@ -3,10 +3,12 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Equipo {
@@ -15,7 +17,8 @@ public class Equipo {
 	@GeneratedValue
 	private Long id;
 	private String nombreEquipo;
-	//private List<String> jugadores = new ArrayList<String>();
+	@OneToMany()
+	private List<Jugador> jugadores = new ArrayList<Jugador>();
 	@ManyToOne()
 	private Usuario usuario;
 	@ManyToOne()
@@ -33,12 +36,12 @@ public class Equipo {
 	public void setNombreEquipo(String nombreEquipo) {
 		this.nombreEquipo = nombreEquipo;
 	}
-	/*public List<String> getJugadores() {
+	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
-	public void setJugadores(List<String> jugadores) {
+	public void setJugadores(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
-	}*/
+	}
 	public Usuario getUsuario() {
 		return usuario;
 	}

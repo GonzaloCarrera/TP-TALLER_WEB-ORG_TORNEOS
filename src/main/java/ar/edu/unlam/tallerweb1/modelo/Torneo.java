@@ -16,7 +16,21 @@ public class Torneo {
 	private Long id;
 	private String nombreTorneo;
 	private String descripcionTorneo;
+	private Long cantidadDeEquipos;
+	private Boolean inscripcionAbierta;
 	
+	public Torneo(){
+		this.inscripcionAbierta=true;
+	}
+	
+	public Boolean getInscripcionAbierta() {
+		return inscripcionAbierta;
+	}
+
+	public void setInscripcionAbierta(Boolean inscripcionAbierta) {
+		this.inscripcionAbierta = inscripcionAbierta;
+	}
+
 	@ManyToMany()
 	private List<Cancha> listaDeCanchas = new ArrayList<Cancha>();
 
@@ -50,5 +64,13 @@ public class Torneo {
 
 	public void setListaDeCanchas(List<Cancha> listaDeCanchas) {
 		this.listaDeCanchas = listaDeCanchas;
+	}
+
+	public Long getCantidadDeEquipos() {
+		return cantidadDeEquipos;
+	}
+
+	public void setCantidadDeEquipos(Long cantidadDeEquipos) {
+		this.cantidadDeEquipos = cantidadDeEquipos;
 	}
 }

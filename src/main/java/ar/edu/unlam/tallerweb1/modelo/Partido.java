@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Partido {
@@ -14,8 +15,10 @@ public class Partido {
 	@GeneratedValue
 	private Long id;
 	private Date horario;
-	//private Equipo equipo1;
-	//private Equipo equipo2;
+	@OneToOne
+	private Equipo equipo1 = new Equipo();
+	@OneToOne
+	private Equipo equipo2 = new Equipo();
 	private Boolean finalizado;
 	private Long golesEquipo1;
 	private Long golesEquipo2;
@@ -37,7 +40,7 @@ public class Partido {
 	public void setHorario(Date horario) {
 		this.horario = horario;
 	}
-	/*public Equipo getEquipo1() {
+	public Equipo getEquipo1() {
 		return equipo1;
 	}
 	public void setEquipo1(Equipo equipo1) {
@@ -48,7 +51,7 @@ public class Partido {
 	}
 	public void setEquipo2(Equipo equipo2) {
 		this.equipo2 = equipo2;
-	}*/
+	}
 	public Boolean getFinalizado() {
 		return finalizado;
 	}
