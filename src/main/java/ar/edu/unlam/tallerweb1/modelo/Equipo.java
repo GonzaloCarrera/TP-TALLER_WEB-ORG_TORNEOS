@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,11 +15,12 @@ public class Equipo {
 	@GeneratedValue
 	private Long id;
 	private String nombreEquipo;
-	private List<String> jugadores;
+	//private List<String> jugadores = new ArrayList<String>();
 	@ManyToOne()
 	private Usuario usuario;
 	@ManyToOne()
 	private Torneo torneo;
+	
 	public Long getId() {
 		return id;
 	}
@@ -31,12 +33,12 @@ public class Equipo {
 	public void setNombreEquipo(String nombreEquipo) {
 		this.nombreEquipo = nombreEquipo;
 	}
-	public List<String> getJugadores() {
+	/*public List<String> getJugadores() {
 		return jugadores;
 	}
 	public void setJugadores(List<String> jugadores) {
 		this.jugadores = jugadores;
-	}
+	}*/
 	public Usuario getUsuario() {
 		return usuario;
 	}

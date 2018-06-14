@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Cancha {
 	private String nombreCancha;
 	private String ubicacion;
 	@ManyToMany()
-	private List<Torneo> listaDeTorneos;
+	private List<Torneo> listaDeTorneos = new ArrayList<Torneo>();
 
 	public Long getId() {
 		return id;

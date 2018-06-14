@@ -24,4 +24,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public Usuario consultarUsuario (Usuario usuario) {
 		return usuarioDao.consultarUsuario(usuario);
 	}
+
+	@Override
+	public Integer consultarExistencia(Usuario usuario) {
+		return usuarioDao.consultarExistencia(usuario);
+	}
 }

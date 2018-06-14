@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,10 +11,15 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@Column(unique=true)
 	private String username;
 	private String password;
+	@Column(unique=true)
 	private String email;
 	private Boolean esAdmin;
+	
+	public Usuario(){
+	}
 	
 	public Long getId() {
 		return id;
