@@ -10,13 +10,14 @@
 	</head>
 	<body>
 		<div class = "container">
-
-			<select class='form-control' id='torneos' name='torneos' required>
+		<form action='iniciar-fecha' method='POST'>
+			<select class='form-control' id='idTorneo' name='idTorneo' required>
 				 <c:forEach items="${torneos}" var="entry">
-					<option value='${entry.nombreTorneo}'>${entry.nombreTorneo}</option>
+					<option value='${entry.id}'>${entry.nombreTorneo}</option>
 	      		 </c:forEach>
       		 </select>
-
+      		 <button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>
+      	</form>
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

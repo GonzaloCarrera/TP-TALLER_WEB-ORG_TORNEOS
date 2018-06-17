@@ -20,6 +20,14 @@ public class TorneoDaoImpl implements TorneoDao{
     private SessionFactory sessionFactory;
 	
 	@Override
+	public Torneo getTorneoById(Long idTorneo) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Torneo)session.createCriteria(Torneo.class)
+				.add(Restrictions.eq("id", idTorneo))
+				.uniqueResult();
+	}
+	
+	@Override
 	public void guardarTorneo(Torneo torneo) {
 		final Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(torneo);
@@ -29,7 +37,22 @@ public class TorneoDaoImpl implements TorneoDao{
 	public List<Torneo> getTorneosConInscripcionAbierta() {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Torneo.class)
-				.add(Restrictions.eq("inscripcionAbierta", true))
+				.add(Restrictions.eq("estado", "Inscripcion Abierta"))
+				.list();
+	}
+	
+	@Override
+	public List<Torneo> getTorneosEnCurso(){
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Torneo.class)
+				.add(Restrictions.eq("estado", "En curso"))
+				.list();
+	}
+	@Override
+	public List<Torneo> getTorneosFinalizado() {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Torneo.class)
+				.add(Restrictions.eq("estado", "Finalizado"))
 				.list();
 	}
 }

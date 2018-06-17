@@ -17,19 +17,21 @@ public class Torneo {
 	private String nombreTorneo;
 	private String descripcionTorneo;
 	private Long cantidadDeEquipos;
-	private Boolean inscripcionAbierta;
+	private String estado; //Inscripcion Abierta, En curso, Finalizado
 	
 	public Torneo(){
-		this.inscripcionAbierta=true;
-	}
-	
-	public Boolean getInscripcionAbierta() {
-		return inscripcionAbierta;
+		this.estado="Inscripcion Abierta";
 	}
 
-	public void setInscripcionAbierta(Boolean inscripcionAbierta) {
-		this.inscripcionAbierta = inscripcionAbierta;
+
+	public String getEstado() {
+		return estado;
 	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 
 	@ManyToMany()
 	private List<Cancha> listaDeCanchas = new ArrayList<Cancha>();

@@ -11,10 +11,13 @@ public class Fecha {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String estado;
+	private String estado; // Preparacion, En curso, Finalizada
 	@ManyToOne()
 	private Torneo torneo;
 
+	public Fecha(){
+		this.estado="Preparacion";
+	}
 	public Long getId() {
 		return id;
 	}

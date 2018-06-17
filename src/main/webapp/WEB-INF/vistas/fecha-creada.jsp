@@ -1,5 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,13 +8,7 @@
 	</head>
 	<body>
 		<div class = "container">
-
-			<select class='form-control' id='torneos' name='torneos' required>
-				 <c:forEach items="${torneos}" var="entry">
-					<option value='${entry.nombreTorneo}'>${entry.nombreTorneo}</option>
-	      		 </c:forEach>
-      		 </select>
-
+			<h1>Se ha creado una fecha perteneciente al torneo ${fecha.torneo.descripcionTorneo}</h1>
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

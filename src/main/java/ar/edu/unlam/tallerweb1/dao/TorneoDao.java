@@ -8,4 +8,7 @@ public interface TorneoDao {
 
 	void guardarTorneo(Torneo torneo);
 	List<Torneo> getTorneosConInscripcionAbierta();
+	List<Torneo> getTorneosEnCurso();
+	List<Torneo> getTorneosFinalizado();
+	Torneo getTorneoById(Long idTorneo);
 }
