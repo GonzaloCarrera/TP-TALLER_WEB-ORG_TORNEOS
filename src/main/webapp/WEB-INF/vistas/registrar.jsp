@@ -40,7 +40,7 @@
     </div>
   </div>		
 					
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarse</button>
+					<button class="btn btn-success" Type="Submit"/>Registrarse</button>
 				</form:form>
 
 				<%--Bloque que es visible si el elemento error no está vacío	--%>
