@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.EquipoDao;
 import ar.edu.unlam.tallerweb1.dao.FechaDao;
+import ar.edu.unlam.tallerweb1.modelo.Equipo;
 
 @Service("servicioEquipo")
 @Transactional
@@ -14,4 +15,9 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 
 	@Inject
 	private EquipoDao equipoDao;
+
+	@Override
+	public void guardarEquipo(Equipo equipo) {
+		equipoDao.guardarEquipo(equipo);	
+	}
 }
