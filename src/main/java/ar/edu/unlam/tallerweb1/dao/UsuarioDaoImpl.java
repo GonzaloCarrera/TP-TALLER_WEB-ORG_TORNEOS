@@ -29,6 +29,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 	
 	@Override
+	public Usuario getUsuarioById(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Usuario) session.createCriteria(Usuario.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+	
+	@Override
 	public Integer consultarExistencia(Usuario usuario) {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Usuario.class)

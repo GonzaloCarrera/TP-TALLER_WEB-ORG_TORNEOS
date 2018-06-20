@@ -29,4 +29,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public Integer consultarExistencia(Usuario usuario) {
 		return usuarioDao.consultarExistencia(usuario);
 	}
+
+	@Override
+	public Usuario getUsuarioById(Long id) {
+		return usuarioDao.getUsuarioById(id);
+	}
 }

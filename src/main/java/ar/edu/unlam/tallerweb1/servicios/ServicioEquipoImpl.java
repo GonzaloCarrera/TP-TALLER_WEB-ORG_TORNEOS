@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -19,5 +21,10 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 	@Override
 	public void guardarEquipo(Equipo equipo) {
 		equipoDao.guardarEquipo(equipo);	
+	}
+
+	@Override
+	public List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo) {
+		return equipoDao.getListaDeEquiposByIdTorneo(idTorneo);
 	}
 }

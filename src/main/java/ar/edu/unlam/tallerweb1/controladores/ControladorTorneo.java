@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
@@ -19,6 +20,9 @@ public class ControladorTorneo {
 
 	@Inject
 	private ServicioTorneo servicioTorneo;
+	
+	@Inject
+	private ServicioEquipo servicioEquipo;
 	
 	@RequestMapping("/registrar-torneo")
 	public ModelAndView registrarTorneo() {
@@ -43,6 +47,7 @@ public class ControladorTorneo {
 
 		ModelMap modelo = new ModelMap();
 		modelo.put("torneos", servicioTorneo.getTorneosConInscripcionAbierta());
+		modelo.put("equipos", servicioEquipo.getListaDeEquiposByIdTorneo(9L));
 		return new ModelAndView("torneos-activos", modelo);
 	}
 

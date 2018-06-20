@@ -30,6 +30,17 @@
 					<option value='${entry.nombreTorneo}'>${entry.nombreTorneo}</option>
 	      		 </c:forEach>
       		 </select>
+      		 
+ 
+
+EQUIPOS PERTENECIENTES AL TORNEO DE ID 9
+							<c:forEach var="entry" items="${equipos}">
+								      		<tr>
+								      			nombreEquipo: <td><p>${entry.nombreEquipo}</p></td>
+								      			username: <td><p>${entry.usuario.username}</p></td>
+								      			cantidadDeEquipos <td><p>${entry.torneo.cantidadDeEquipos}</p></td>
+								      		</tr>
+								      	</c:forEach>
 
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->

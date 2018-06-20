@@ -11,7 +11,7 @@
 		<div class = "container">
 		
 		
-		<ul class='nav navbar-nav navbar-right'>
+				<ul class='nav navbar-nav navbar-right'>
 					<c:set var="usuario" value="${usuario}" scope="session" />
 					<c:if test="${empty usuario.username}">
 						<li><a href='registrar'><span class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>

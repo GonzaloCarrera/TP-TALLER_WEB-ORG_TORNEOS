@@ -6,4 +6,5 @@ public interface ServicioUsuario {
 	Usuario consultarUsuario(Usuario usuario);
 	Integer consultarExistencia(Usuario usuario);
 	void guardarUsuario(Usuario usuario);
+	Usuario getUsuarioById(Long id);
 }
