@@ -18,7 +18,7 @@ public class Equipo {
 	private Long id;
 	private String nombreEquipo;
 	@OneToMany()
-	private List<Jugador> jugadores = new ArrayList<Jugador>();
+	private List<Jugador> jugadores;
 	@ManyToOne()
 	private Usuario usuario;
 	@ManyToOne()

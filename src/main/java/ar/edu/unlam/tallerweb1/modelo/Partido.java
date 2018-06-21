@@ -15,10 +15,10 @@ public class Partido {
 	@GeneratedValue
 	private Long id;
 	private Date horario;
-	@OneToOne
-	private Equipo equipo1 = new Equipo();
-	@OneToOne
-	private Equipo equipo2 = new Equipo();
+	@ManyToOne
+	private Equipo equipo1;
+	@ManyToOne
+	private Equipo equipo2;
 	private Boolean finalizado;
 	private Long golesEquipo1;
 	private Long golesEquipo2;

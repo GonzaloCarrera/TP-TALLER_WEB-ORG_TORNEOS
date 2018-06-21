@@ -32,7 +32,7 @@
 					<option path="idTorneo" value='${entry.id}'>${entry.nombreTorneo}</option>
 	      		 </c:forEach>
       		 </select>
-      		 <button class="btn btn-success" Type="Submit"/>Buscar equipos pertenecientes al torneo</button>
+      		 <button class="btn btn-success" Type="Submit"/>Buscar fechas pertenecientes al torneo</button>
       	</form:form>
       		 
  
