@@ -25,28 +25,42 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-				
-		<form:form action="listado-fechas-torneo" method="POST">
-			<select class='form-control' id='idTorneo' name='idTorneo' required>
-				 <c:forEach items="${torneos}" var="entry">
-					<option path="idTorneo" value='${entry.id}'>${entry.nombreTorneo}</option>
-	      		 </c:forEach>
-      		 </select>
-      		 <button class="btn btn-success" Type="Submit"/>Buscar equipos pertenecientes al torneo</button>
-      	</form:form>
-      		 
  
 
-<!--  
-EQUIPOS PERTENECIENTES AL TORNEO DE ID 9
-							<c:forEach var="entry" items="${equipos}">
-								      		<tr>
-								      			nombreEquipo: <td><p>${entry.nombreEquipo}</p></td>
-								      			username: <td><p>${entry.usuario.username}</p></td>
-								      			cantidadDeEquipos <td><p>${entry.torneo.cantidadDeEquipos}</p></td>
-								      		</tr>
-								      	</c:forEach>
--->
+FECHAS PERTENECIENTES AL TORNEO
+								      	
+						      	
+	<table class="table table-sm">
+  <thead>
+    <tr>
+   	  <th scope="col">Fecha</th>
+      <th scope="col">idFecha</th>
+      <th scope="col">estado</th>
+      <th scope="col">t.nombreTorneo</th>
+      <th scope="col">t.cantidadDeEquipos</th>
+      <th scope="col">t.estado</th>
+    </tr>
+  </thead>
+  
+  	<c:set var="numberOfRows" value="0"/>	
+  <c:forEach var="entry" items="${fechas}">
+  <tbody>
+    <tr>
+    <th scope="row">
+<c:set var="numberOfRows" value="${numberOfRows+1}"/>
+<c:out value="${numberOfRows}"/></th>
+      <td>${entry.id}</td>
+      <td>${entry.estado}</td>
+      <td>${entry.torneo.nombreTorneo}</td>
+      <td>${entry.torneo.cantidadDeEquipos}</td>
+      <td>${entry.torneo.estado}</td>
+    </tr>
+  </tbody>
+   	</c:forEach>
+  
+</table>
+								      	
+								      	
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

@@ -30,4 +30,13 @@ public class FechaDaoImpl implements FechaDao {
 			.add(Restrictions.eq("torneo", torneo))
 			.list();
 	}
+	
+	public List<Fecha> getFechasDeUnTorneoByIdTorneo(Long idTorneo){
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Fecha.class)
+			.createAlias("torneo", "t")
+			.add(Restrictions.eq("t.id", idTorneo))
+			.list();
+	}
+	
 }

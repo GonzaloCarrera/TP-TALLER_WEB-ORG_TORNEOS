@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFecha;
@@ -45,5 +48,13 @@ public class ControladorFecha {
 		return new ModelAndView("fecha-creada", modelo);
 	}
 	
+	@RequestMapping(path = "/listado-fechas-torneo", method = RequestMethod.POST)
+	public ModelAndView listadoFechasTorneo(@RequestParam("idTorneo") Long idTorneo) {
+		ModelMap modelo = new ModelMap();	
+		
+		List<Fecha> fechas = servicioFecha.getFechasDeUnTorneoByIdTorneo(idTorneo);
+		modelo.put("fechas", fechas);
+		return new ModelAndView("listado-fechas-torneo", modelo);
+	}
 	
 }

@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,8 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
@@ -46,9 +50,9 @@ public class ControladorTorneo {
 	public ModelAndView torneosActivos() {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("torneos", servicioTorneo.getTorneosConInscripcionAbierta());
-		modelo.put("equipos", servicioEquipo.getListaDeEquiposByIdTorneo(9L));
+		modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
 		return new ModelAndView("torneos-activos", modelo);
 	}
+
 
 }
