@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +19,11 @@ public class ControladorLogin {
 
 	@Inject
 	private ServicioUsuario servicioUsuario;
+	
+	@PostConstruct
+	public void init(){
+		
+	}
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
