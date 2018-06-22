@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
+import ar.edu.unlam.tallerweb1.modelo.Jugador;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
@@ -35,10 +39,11 @@ public class ControladorEquipo {
 	public ModelAndView iniciarFecha() {
 
 		ModelMap modelo = new ModelMap();
-			
+		List<Jugador> jugadores = new ArrayList<Jugador>(10);
 		Equipo equipo = new Equipo();
+		modelo.put("jugadores", jugadores);
 		modelo.put("equipo", equipo);
-		modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
+		//modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
 		return new ModelAndView("registrar-equipo", modelo);
 	}
 	

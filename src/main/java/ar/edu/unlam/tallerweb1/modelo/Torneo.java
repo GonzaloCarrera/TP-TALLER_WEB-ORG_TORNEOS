@@ -18,7 +18,8 @@ public class Torneo {
 	private String descripcionTorneo;
 	private Long cantidadDeEquipos;
 	private String estado; //Inscripcion Abierta, En curso, Finalizado
-	
+	@ManyToMany
+	private List<Equipo> equipos;
 	public Torneo(){
 		this.estado="Inscripcion Abierta";
 	}

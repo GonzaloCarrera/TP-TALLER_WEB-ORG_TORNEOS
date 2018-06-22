@@ -17,7 +17,7 @@ public class Cancha {
 	private String nombreCancha;
 	private String ubicacion;
 	@ManyToMany()
-	private List<Torneo> listaDeTorneos;
+	private List<Torneo> torneos;
 
 	public Long getId() {
 		return id;
@@ -44,11 +44,11 @@ public class Cancha {
 	}
 
 	public List<Torneo> getListaDeTorneos() {
-		return listaDeTorneos;
+		return torneos;
 	}
 
 	public void setListaDeTorneos(List<Torneo> listaDeTorneos) {
-		this.listaDeTorneos = listaDeTorneos;
+		this.torneos = listaDeTorneos;
 	}
 
 }

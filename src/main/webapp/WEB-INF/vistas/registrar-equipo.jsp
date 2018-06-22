@@ -39,22 +39,21 @@
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Usuario</label>
     <div class="col-sm-10">
-      <form:input path="usuario.id" value="${usuario.id}" type="text" id="usuario" class="form-control"  placeholder="Username"/>    
+      <form:input path="usuario.id" value="${usuario.id}" type="text" id="usuario" class="form-control"  placeholder="Username" disabled/>    
     </div>
   </div>
-  	<div class="form-group row">
-    			<select class='form-control' id='torneo.id' name='torneo.id' required>
+  	<!-- 		<select class='form-control' id='torneo.id' name='torneo.id' required>
 				 <c:forEach items="${torneos}" var="entry">
 					<option path="torneo.id" value='${entry.id}'>${entry.nombreTorneo}</option>
 	      		 </c:forEach>
       			 </select>
-  	</div>		
+  	</div-->		
 					
 					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarse</button>
 				</form:form>
 
 				<%--Bloque que es visible si el elemento error no está vacío	--%>
-				<c:if test="${not empty error}">
+				<c:if test="${not empty error}">	
 			        <h4><span>${error}</span></h4>
 			        <br>
 		        </c:if>	

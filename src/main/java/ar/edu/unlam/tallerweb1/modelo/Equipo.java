@@ -7,6 +7,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,8 +22,8 @@ public class Equipo {
 	private List<Jugador> jugadores;
 	@ManyToOne()
 	private Usuario usuario;
-	@ManyToOne()
-	private Torneo torneo;
+	@ManyToMany()
+	private List<Torneo> torneos;
 	
 	public Long getId() {
 		return id;
@@ -48,11 +49,11 @@ public class Equipo {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public Torneo getTorneo() {
-		return torneo;
+	public List<Torneo> getTorneo() {
+		return torneos;
 	}
-	public void setTorneo(Torneo torneo) {
-		this.torneo = torneo;
+	public void setTorneo(List<Torneo> torneos) {
+		this.torneos = torneos;
 	}
 
 }
