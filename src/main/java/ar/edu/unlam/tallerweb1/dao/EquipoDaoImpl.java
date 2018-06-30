@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,11 +27,52 @@ public class EquipoDaoImpl implements EquipoDao{
 	}
 	
 	@Override
-	public List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo) {
+	public Equipo getEquipoById(Long idEquipo) {
 		final Session session = sessionFactory.getCurrentSession();
+		return (Equipo) session.createCriteria(Equipo.class)
+				.add(Restrictions.eq("id", idEquipo))
+				.uniqueResult();
+	}
+	
+	@Override
+	public List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo) {
+		/*List<Equipo> listaDeequipos = this.getListaDeEquiposCompleta();
+		List<Equipo> equipos = new ArrayList<Equipo>();
+		for(Equipo e : listaDeequipos){
+			for(Torneo t : e.getTorneos()){
+				if(t.getId()==idTorneo){
+					equipos.add(e);
+				}
+			}
+		}
+		return equipos;*/
+	final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Equipo.class)
-				.createAlias("torneo", "t")
+				.createAlias("torneos", "t")
 				.add(Restrictions.eq("t.id", idTorneo))
 				.list();
 	}
+	
+	public List<Equipo> getListaDeEquiposCompleta(){
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Equipo.class)
+				.list();
+	}
+	
+	@Override
+	public List<Equipo> getListaDeEquiposByIdUsuario(Long idUsuario) {
+		List<Equipo> equipos = this.getListaDeEquiposCompleta();
+		List<Equipo> equiposDelUsuario= new ArrayList<Equipo>();
+		for(Equipo e : equipos){
+			if(e.getUsuario().getId()==idUsuario){
+				equiposDelUsuario.add(e);
+			}
+		}
+		return equiposDelUsuario;
+		/*final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Equipo.class)
+				.createAlias("usuario", "u")
+				.add(Restrictions.eq("u.id", idUsuario))
+				.list();*/
+	}//ERROR, TRAE VALORES REPETIDOS
 }

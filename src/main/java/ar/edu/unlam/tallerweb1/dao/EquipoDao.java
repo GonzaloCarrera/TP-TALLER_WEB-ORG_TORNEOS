@@ -11,4 +11,8 @@ public interface EquipoDao {
 
 	List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo);
 
+	List<Equipo> getListaDeEquiposByIdUsuario(Long idUsuario);
+
+	Equipo getEquipoById(Long idEquipo);
+
 }

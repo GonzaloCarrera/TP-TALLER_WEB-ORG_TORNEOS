@@ -27,4 +27,14 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 	public List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo) {
 		return equipoDao.getListaDeEquiposByIdTorneo(idTorneo);
 	}
+
+	@Override
+	public List<Equipo> getListaDeEquiposByIdUsuario(Long idUsuario) {
+		return equipoDao.getListaDeEquiposByIdUsuario(idUsuario);
+	}
+
+	@Override
+	public Equipo getEquipoById(Long idEquipo) {
+		return equipoDao.getEquipoById(idEquipo);
+	}
 }

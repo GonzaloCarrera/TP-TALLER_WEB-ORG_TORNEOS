@@ -3,10 +3,14 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,7 +26,15 @@ public class Equipo {
 	private List<Jugador> jugadores;
 	@ManyToOne()
 	private Usuario usuario;
-	@ManyToMany()
+	@ManyToMany(cascade = { 
+			
+		        CascadeType.ALL
+		    
+	    }, fetch = FetchType.EAGER)
+	    @JoinTable(name = "equipo_torneo",
+	        joinColumns = @JoinColumn(name = "equipo_id"),
+	        inverseJoinColumns = @JoinColumn(name = "torneo_id")
+	    )
 	private List<Torneo> torneos;
 	
 	public Long getId() {
@@ -49,10 +61,10 @@ public class Equipo {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public List<Torneo> getTorneo() {
+	public List<Torneo> getTorneos() {
 		return torneos;
 	}
-	public void setTorneo(List<Torneo> torneos) {
+	public void setTorneos(List<Torneo> torneos) {
 		this.torneos = torneos;
 	}
 

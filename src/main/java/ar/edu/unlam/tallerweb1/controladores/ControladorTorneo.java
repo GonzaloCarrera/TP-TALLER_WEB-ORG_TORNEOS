@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,12 +47,57 @@ public class ControladorTorneo {
 		return new ModelAndView("torneo-creado", modelo);
 	}
 	
-	@RequestMapping("/torneos-activos")
+	@RequestMapping("/torneos-en-curso")
 	public ModelAndView torneosActivos() {
-
+		
 		ModelMap modelo = new ModelMap();
 		modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
-		return new ModelAndView("torneos-activos", modelo);
+		return new ModelAndView("torneos-en-curso", modelo);
+	}
+	
+	@RequestMapping("/listado-torneo-inscripcion-abierta")
+	public ModelAndView listadoTorneosInscripcionAbierta() {
+		
+		ModelMap modelo = new ModelMap();
+		modelo.put("torneos", servicioTorneo.getTorneosConInscripcionAbierta());
+		return new ModelAndView("listado-torneo-inscripcion-abierta", modelo);
+	}
+	
+	@RequestMapping(path = "/seleccionar-equipo-torneo", method = RequestMethod.GET)
+	public ModelAndView seleccionarEquipoTorneo(@RequestParam("idTorneo") Long idTorneo,
+											  @RequestParam("idUsuario") Long idUsuario) {
+		ModelMap modelo = new ModelMap();	
+		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdUsuario(idUsuario);
+		modelo.put("idTorneo", idTorneo);
+		modelo.put("equipos", equipos);
+		return new ModelAndView("registrar-equipo-torneo", modelo);
+	}
+	
+	@RequestMapping(path = "/registrar-equipo-torneo", method = RequestMethod.POST)
+	public ModelAndView registrarEquipoTorneo(@RequestParam("idTorneo") Long idTorneo,
+											  @RequestParam("idEquipo") Long idEquipo) {
+		ModelMap modelo = new ModelMap();	
+		Equipo equipo = servicioEquipo.getEquipoById(idEquipo);
+		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
+		equipo.getTorneos().add(torneo);
+		servicioEquipo.guardarEquipo(equipo);
+		return new ModelAndView("equipo-torneo-registrado", modelo);
+	}
+	
+	
+	@RequestMapping("/mis-torneos")
+	public ModelAndView misTorneos(@RequestParam("idUsuario") Long idUsuario) {
+		
+		ModelMap modelo = new ModelMap();
+		List<Torneo> torneos = new ArrayList<Torneo>();
+		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdUsuario(idUsuario);
+		for(Equipo e : equipos){
+			for(Torneo t : e.getTorneos()){
+				torneos.add(t);
+			}
+		}
+		modelo.put("torneos", torneos);
+		return new ModelAndView("mis-torneos", modelo);
 	}
 
 

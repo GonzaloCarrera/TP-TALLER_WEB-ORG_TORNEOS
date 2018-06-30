@@ -36,19 +36,16 @@ public class ControladorEquipo {
 	private ServicioUsuario servicioUsuario;
 	
 	@RequestMapping("/registrar-equipo")
-	public ModelAndView iniciarFecha() {
-
+	public ModelAndView registrarEquipo() {
+		
 		ModelMap modelo = new ModelMap();
-		List<Jugador> jugadores = new ArrayList<Jugador>(10);
 		Equipo equipo = new Equipo();
-		modelo.put("jugadores", jugadores);
 		modelo.put("equipo", equipo);
-		//modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
 		return new ModelAndView("registrar-equipo", modelo);
 	}
 	
 	@RequestMapping(path = "/registrar-equipo", method = RequestMethod.POST)
-	public ModelAndView registrarTorneoPost(@ModelAttribute("equipo") Equipo equipo) {
+	public ModelAndView registrarEquipoPost(@ModelAttribute("equipo") Equipo equipo) {
 		ModelMap modelo = new ModelMap();
 		
 		/*Torneo torneo = servicioTorneo.getTorneoById(equipo.getTorneo().getId());

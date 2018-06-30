@@ -25,41 +25,18 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-				<form:form action="registrar-equipo" method="POST" modelAttribute="equipo">
-			    	<h3 class="form-signin-heading">Registrar Equipo</h3>
-					<hr class="colorgraph"><br>		
-					
-	<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre del Equipo</label>
-    <div class="col-sm-10">
-      <form:input path="nombreEquipo" id="nombreEquipo" type="text" class="form-control" placeholder="Nombre del equipo" />
-    </div>
-  </div>
-
-      <form:input type="hidden" path="usuario.id" value="${usuario.id}" id="usuario"/>    
-  
-  				
-  	<!-- 		<select class='form-control' id='torneo.id' name='torneo.id' required>
-				 <c:forEach items="${torneos}" var="entry">
-					<option path="torneo.id" value='${entry.id}'>${entry.nombreTorneo}</option>
-	      		 </c:forEach>
-      			 </select>
-  	</div-->		
-					
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrarse</button>
-				</form:form>
 				
-
-
-				<%--Bloque que es visible si el elemento error no está vacío	--%>
-				<c:if test="${not empty error}">	
-			        <h4><span>${error}</span></h4>
-			        <br>
-		        </c:if>	
-			</div>
+		<form:form action="seleccionar-equipo-torneo" method="GET">
+			<select class='form-control' id='idTorneo' name='idTorneo' required>
+				 <c:forEach items="${torneos}" var="entry">
+					<option name="idTorneo" value='${entry.id}'>${entry.nombreTorneo}</option>
+	      		 </c:forEach>
+      		 </select>
+      		 <input type="hidden" value="${usuario.id}" name="idUsuario" id="idUsuario"/>    
+      		 <button class="btn btn-success" Type="Submit"/>Registrar equipo en torneo</button>
+      	</form:form>
+      		 
 		</div>
-		
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

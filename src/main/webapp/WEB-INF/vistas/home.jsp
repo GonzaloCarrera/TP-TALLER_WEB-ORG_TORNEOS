@@ -26,6 +26,14 @@
 				</ul>
 		
 		
+			<a
+									href='mis-torneos?idUsuario=<c:out value="${usuario.id}" />'
+									class="btn btn-primary" role="button"> Mis torneos
+								</a>
+		
+				
+				
+      		 
 		
 			<h1>Bienvenidos a Taller Web 1</h1>
 		</div>

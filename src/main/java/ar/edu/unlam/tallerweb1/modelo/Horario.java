@@ -15,13 +15,20 @@ public class Horario {
 	private Long id;
 	private Date horaInicio;
 	private Date horaFin;
-
+	private Boolean permitirSeleccionHorario;
+	private Boolean macheado;
+	
 	@ManyToOne()
 	private Equipo equipo;
 
 	@ManyToOne()
 	private Fecha fecha;
 
+	public Horario(){
+		this.permitirSeleccionHorario=true;
+		this.macheado=false;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +67,18 @@ public class Horario {
 
 	public void setFecha(Fecha fecha) {
 		this.fecha = fecha;
+	}
+	public Boolean getPermitirSeleccionHorario() {
+		return permitirSeleccionHorario;
+	}
+	public void setPermitirSeleccionHorario(Boolean permitirSeleccionHorario) {
+		this.permitirSeleccionHorario = permitirSeleccionHorario;
+	}
+	public Boolean getMacheado() {
+		return macheado;
+	}
+	public void setMacheado(Boolean macheado) {
+		this.macheado = macheado;
 	}
 
 }

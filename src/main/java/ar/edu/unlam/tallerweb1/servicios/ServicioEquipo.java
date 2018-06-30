@@ -8,4 +8,6 @@ import ar.edu.unlam.tallerweb1.modelo.Fecha;
 public interface ServicioEquipo {
 	void guardarEquipo(Equipo equipo);
 	List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo);
+	List<Equipo> getListaDeEquiposByIdUsuario(Long idUsuario);
+	Equipo getEquipoById(Long idEquipo);
 }
