@@ -45,15 +45,18 @@
       	
       	
       	
+      	<form action='iniciar-fecha-torneo' method='GET'>
       
       					<c:forEach items="${torneos}" var="entry">
-      						<c:url value="/iniciar-fecha" var="displayURL">
+      						<c:url value="/iniciar-fecha-torneo" var="displayURL">
 								<c:param name="idTorneo" value="${entry.id}" /> <p>${entry.nombreTorneo}</p>							
 								</c:url> 
 				<a href='<c:out value="${displayURL}" />'class="btn btn-warning" role="button">Iniciar fecha</a>
 						</c:forEach>
+
+      	 	</form>
       	
-      	a
+      	
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
