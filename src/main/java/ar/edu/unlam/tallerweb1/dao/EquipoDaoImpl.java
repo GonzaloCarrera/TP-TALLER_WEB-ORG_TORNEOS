@@ -55,8 +55,15 @@ public class EquipoDaoImpl implements EquipoDao{
 	
 	public List<Equipo> getListaDeEquiposCompleta(){
 		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Equipo.class)
+		List<Equipo> equipos = session.createCriteria(Equipo.class)
 				.list();
+		List<Equipo> listaDeEquipos = new ArrayList<Equipo>();
+		for(Equipo e : equipos){
+			if(!listaDeEquipos.contains(e)){
+				listaDeEquipos.add(e);
+			}
+		}
+		return listaDeEquipos;
 	}
 	
 	@Override
@@ -65,7 +72,7 @@ public class EquipoDaoImpl implements EquipoDao{
 		List<Equipo> equiposDelUsuario= new ArrayList<Equipo>();
 		for(Equipo e : equipos){
 			if(e.getUsuario().getId()==idUsuario){
-				equiposDelUsuario.add(e);
+					equiposDelUsuario.add(e);
 			}
 		}
 		return equiposDelUsuario;

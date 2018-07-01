@@ -26,10 +26,30 @@
 					</c:if>
 				</ul>
 				
+				<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nombre del Torneo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Estadisticas</th>
+    </tr>
+  </thead>
+  
 				 <c:forEach items="${torneos}" var="entry">
-						<p>IdTorneo: ${entry.id} nombreTorneo:${entry.nombreTorneo}</p>
+				  <tbody>
+    <tr>
+						<td>${entry.id}</td>
+						<td>${entry.nombreTorneo}</td>
+						<td>${entry.descripcionTorneo}</td>
+						<td>${entry.estado}</td>
+						<td><button type="button" class="btn btn-info">Ver estadisticas (falta la funcionalidad)</button></td>
+						    </tr>
+  </tbody>
 	      		 </c:forEach>
 
+</table>
 
       		 
  

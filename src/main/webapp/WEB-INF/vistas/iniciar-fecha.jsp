@@ -33,6 +33,27 @@
       		 </select>
       		 <button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>
       	</form>
+      	
+      	<form action='iniciar-fecha' method='POST'>
+			<select class='form-control' id='idTorneo' name='idTorneo' required>
+				 <c:forEach items="${torneos}" var="entry">
+					<option value='${entry.id}'>${entry.nombreTorneo}</option>
+	      		 </c:forEach>
+      		 </select>
+      		 <button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>
+      	</form>
+      	
+      	
+      	
+      
+      					<c:forEach items="${torneos}" var="entry">
+      						<c:url value="/iniciar-fecha" var="displayURL">
+								<c:param name="idTorneo" value="${entry.id}" /> <p>${entry.nombreTorneo}</p>							
+								</c:url> 
+				<a href='<c:out value="${displayURL}" />'class="btn btn-warning" role="button">Iniciar fecha</a>
+						</c:forEach>
+      	
+      	a
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

@@ -47,9 +47,10 @@ public class ControladorFecha {
 	}
 	
 	@RequestMapping(path= "/iniciar-fecha", method = RequestMethod.POST)
-	public ModelAndView iniciarFechaPost(@ModelAttribute("fecha") Fecha fecha, @ModelAttribute("idTorneo") Long idTorneo) {
+	public ModelAndView iniciarFechaPost(@RequestParam("idTorneo") Long idTorneo) {
 
 		ModelMap modelo = new ModelMap(); //faltan agregar validaciones, ej: si el torneo ya tiene una fecha en curso no podria iniciarse otra fecha.
+		Fecha fecha = new Fecha();
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo);
 		fecha.setTorneo(torneo);
