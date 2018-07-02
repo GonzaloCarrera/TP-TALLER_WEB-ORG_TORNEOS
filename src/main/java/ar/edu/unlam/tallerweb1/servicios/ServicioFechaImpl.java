@@ -32,4 +32,9 @@ public class ServicioFechaImpl implements ServicioFecha{
 	public List<Fecha> getFechasDeUnTorneoByIdTorneo(Long idTorneo) {
 		return fechaDao.getFechasDeUnTorneoByIdTorneo(idTorneo);
 	}
+
+	@Override
+	public List<Fecha> getListaDeFechasEnCurso() {
+		return fechaDao.getListaDeFechasEnCurso();
+	}
 }

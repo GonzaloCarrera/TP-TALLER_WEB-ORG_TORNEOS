@@ -26,6 +26,9 @@ public class Partido {
 	@ManyToOne()
 	private Fecha fecha;
 
+	public Partido(){
+		this.finalizado = false;
+	}
 	public Long getId() {
 		return id;
 	}

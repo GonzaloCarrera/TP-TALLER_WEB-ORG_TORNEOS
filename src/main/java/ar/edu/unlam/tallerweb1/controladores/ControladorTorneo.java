@@ -81,6 +81,8 @@ public class ControladorTorneo {
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		equipo.getTorneos().add(torneo);
 		servicioEquipo.guardarEquipo(equipo);
+		modelo.put("equipo", equipo);
+		modelo.put("torneo", torneo);
 		return new ModelAndView("equipo-torneo-registrado", modelo);
 	}
 	

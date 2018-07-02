@@ -10,4 +10,5 @@ public interface FechaDao {
 	void guardarFecha(Fecha fecha);
 	List<Fecha> getFechasDeUnTorneo(Torneo torneo);
 	List<Fecha> getFechasDeUnTorneoByIdTorneo(Long idTorneo);
+	public List<Fecha> getListaDeFechasEnCurso();
 }

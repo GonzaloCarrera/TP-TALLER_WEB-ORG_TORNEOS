@@ -7,14 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Horario {
 	
 	@Id
 	@GeneratedValue
 	private Long id;
-	private Date horaInicio;
-	private Date horaFin;
+	private String horaInicio;
+	private String horaFin;
 	private Boolean permitirSeleccionHorario;
 	private Boolean macheado;
 	
@@ -37,19 +39,19 @@ public class Horario {
 		this.id = id;
 	}
 
-	public Date getHoraInicio() {
+	public String getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(Date horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public Date getHoraFin() {
+	public String getHoraFin() {
 		return horaFin;
 	}
 
-	public void setHoraFin(Date horaFin) {
+	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
 

@@ -55,4 +55,5 @@ public class TorneoDaoImpl implements TorneoDao{
 				.add(Restrictions.eq("estado", "Finalizado"))
 				.list();
 	}
+	
 }

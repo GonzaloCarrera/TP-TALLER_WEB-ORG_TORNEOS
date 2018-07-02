@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -24,33 +25,36 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-		
-		
-			<a
-									href='mis-torneos?idUsuario=<c:out value="${usuario.id}" />'
-									class="btn btn-primary" role="button"> Mis torneos
-								</a>
-			<a
-									href='registrar-equipo'
-									class="btn btn-primary" role="button"> Registrar Equipo
-								</a>		
-			<a
-									href='listado-torneo-inscripcion-abierta'
-									class="btn btn-primary" role="button"> Inscribirme a torneo
-								</a>	
-			<a
-									href='seleccionar-horario?idUsuario=<c:out value="${usuario.id}" />'
-									class="btn btn-primary" role="button"> Seleccionar Horario
-								</a>
-			<a
-									href='proximos-partidos?idUsuario=<c:out value="${usuario.id}" />'
-									class="btn btn-primary" role="button"> Proximos partidos
-								</a>
-			
 				
+				<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Equipo</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Torneo</th>
+    </tr>
+  </thead>
+
+				 <c:forEach items="${horarios}" var="entry">
+				  <tbody>
+    <tr>
+						<td>${entry.id}</td>
+						<td>${entry.equipo.nombreEquipo}</td>
+						<td>${entry.fecha.id}</td>
+						<td>${entry.fecha.torneo.nombreTorneo}</td>
+						<td><a
+									href='seleccionar-horario-partido?idHorario=<c:out value="${entry.id}" />'
+									class="btn btn-primary" role="button"> Seleccionar Horario
+								</a></td>
+						    </tr>
+  </tbody>
+	      		 </c:forEach>
+
+</table>
+
       		 
-		
-			<h1>Bienvenidos a Taller Web 1</h1>
+ 
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

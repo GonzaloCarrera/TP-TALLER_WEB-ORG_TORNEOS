@@ -39,4 +39,11 @@ public class FechaDaoImpl implements FechaDao {
 			.list();
 	}
 	
+	public List<Fecha> getListaDeFechasEnCurso(){
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Fecha.class)
+			.add(Restrictions.eq("estado", "En curso"))
+			.list();
+	}
+	
 }

@@ -74,4 +74,12 @@ public class ControladorFecha {
 		return new ModelAndView("listado-fechas-torneo", modelo);
 	}
 	
+	@RequestMapping(path= "/fechas-en-curso")
+	public ModelAndView fechasEnCurso() {
+
+		ModelMap modelo = new ModelMap();
+		List<Fecha> fechas = servicioFecha.getListaDeFechasEnCurso();
+		modelo.put("fechas", fechas);
+		return new ModelAndView("fechas-en-curso", modelo);
+	}
 }

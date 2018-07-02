@@ -24,33 +24,7 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-		
-		
-			<a
-									href='mis-torneos?idUsuario=<c:out value="${usuario.id}" />'
-									class="btn btn-primary" role="button"> Mis torneos
-								</a>
-			<a
-									href='registrar-equipo'
-									class="btn btn-primary" role="button"> Registrar Equipo
-								</a>		
-			<a
-									href='listado-torneo-inscripcion-abierta'
-									class="btn btn-primary" role="button"> Inscribirme a torneo
-								</a>	
-			<a
-									href='seleccionar-horario?idUsuario=<c:out value="${usuario.id}" />'
-									class="btn btn-primary" role="button"> Seleccionar Horario
-								</a>
-			<a
-									href='proximos-partidos?idUsuario=<c:out value="${usuario.id}" />'
-									class="btn btn-primary" role="button"> Proximos partidos
-								</a>
-			
-				
-      		 
-		
-			<h1>Bienvenidos a Taller Web 1</h1>
+			<h1>Registraste a tu equipo ${equipo.nombreEquipo} al torneo ${torneo.nombreTorneo}</h1>
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
