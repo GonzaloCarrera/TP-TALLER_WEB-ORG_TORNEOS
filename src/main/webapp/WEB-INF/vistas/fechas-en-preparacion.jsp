@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,36 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-			<h1>Se ha creado una fecha perteneciente al torneo ${torneo.nombreTorneo}</h1>
+				
+				<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Torneo</th>
+      <th scope="col">Cantidad de Equipos</th>
+    </tr>
+  </thead>
+
+				 <c:forEach items="${fechas}" var="entry">
+				  <tbody>
+    <tr>
+						<td>${entry.id}</td>
+						<td>${entry.id}</td>
+						<td>${entry.torneo.nombreTorneo}</td>
+						<td>${entry.torneo.cantidadDeEquipos}</td>
+												<td><a
+									href='machear-fecha?idFecha=<c:out value="${entry.id}" />'
+									class="btn btn-primary" role="button"> Machear (falta funcionalidad)
+								</a></td>
+						    </tr>
+  </tbody>
+	      		 </c:forEach>
+
+</table>
+
+      		 
+ 
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

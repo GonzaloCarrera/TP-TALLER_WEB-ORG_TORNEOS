@@ -10,4 +10,5 @@ public interface ServicioFecha {
 	List<Fecha> getFechasDeUnTorneo(Torneo torneo);
 	List<Fecha> getFechasDeUnTorneoByIdTorneo(Long idTorneo);
 	public List<Fecha> getListaDeFechasEnCurso();
+	List<Fecha> getListaDeFechasEnPreparacion();
 }

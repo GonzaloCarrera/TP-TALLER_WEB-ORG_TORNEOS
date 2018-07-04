@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Jugador {
@@ -11,6 +12,15 @@ public class Jugador {
 	@GeneratedValue
 	private Long id;
 	private String nombre;
+	@ManyToOne
+	private Equipo equipo;
+	
+	public Equipo getEquipo() {
+		return equipo;
+	}
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
 	public Long getId() {
 		return id;
 	}

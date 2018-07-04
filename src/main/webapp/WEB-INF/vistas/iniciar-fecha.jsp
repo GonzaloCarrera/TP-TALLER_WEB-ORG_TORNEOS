@@ -25,36 +25,34 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-		<form action='iniciar-fecha' method='POST'>
-			<select class='form-control' id='idTorneo' name='idTorneo' required>
-				 <c:forEach items="${torneos}" var="entry">
-					<option value='${entry.id}'>${entry.nombreTorneo}</option>
-	      		 </c:forEach>
-      		 </select>
-      		 <button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>
-      	</form>
-      	
-      	<form action='iniciar-fecha' method='POST'>
-			<select class='form-control' id='idTorneo' name='idTorneo' required>
-				 <c:forEach items="${torneos}" var="entry">
-					<option value='${entry.id}'>${entry.nombreTorneo}</option>
-	      		 </c:forEach>
-      		 </select>
-      		 <button type='submit' class='btn btn-success btn-lg' id='submit'>Enviar</button>
-      	</form>
-      	
-      	
-      	
-      	<form action='iniciar-fecha-torneo' method='GET'>
       
-      					<c:forEach items="${torneos}" var="entry">
-      						<c:url value="/iniciar-fecha-torneo" var="displayURL">
-								<c:param name="idTorneo" value="${entry.id}" /> <p>${entry.nombreTorneo}</p>							
-								</c:url> 
-				<a href='<c:out value="${displayURL}" />'class="btn btn-warning" role="button">Iniciar fecha</a>
-						</c:forEach>
+      	 	
+      	 	<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nombre del Torneo</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Cantidad de Equipos</th>
+    </tr>
+  </thead>
 
-      	 	</form>
+				 <c:forEach items="${torneos}" var="entry">
+				  <tbody>
+    <tr>
+						<td>${entry.id}</td>
+						<td>${entry.nombreTorneo}</td>
+						<td>${entry.descripcionTorneo}</td>
+						<td>${entry.cantidadDeEquipos}</td>
+						<td><a
+									href='iniciar-fecha-torneo?idTorneo=<c:out value="${entry.id}" />'
+									class="btn btn-primary" role="button"> Iniciar fecha
+								</a></td>
+						    </tr>
+  </tbody>
+	      		 </c:forEach>
+
+</table>
       	
       	
 		</div>

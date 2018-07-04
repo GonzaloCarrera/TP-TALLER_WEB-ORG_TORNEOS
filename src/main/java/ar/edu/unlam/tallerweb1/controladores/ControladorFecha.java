@@ -41,7 +41,6 @@ public class ControladorFecha {
 
 		ModelMap modelo = new ModelMap();
 		Fecha fecha = new Fecha();
-		modelo.put("fecha", fecha);
 		modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
 		return new ModelAndView("iniciar-fecha", modelo);
 	}
@@ -81,5 +80,14 @@ public class ControladorFecha {
 		List<Fecha> fechas = servicioFecha.getListaDeFechasEnCurso();
 		modelo.put("fechas", fechas);
 		return new ModelAndView("fechas-en-curso", modelo);
+	}
+	
+	@RequestMapping(path= "/fechas-en-preparacion")
+	public ModelAndView fechasEnPreparacion() {
+
+		ModelMap modelo = new ModelMap();
+		List<Fecha> fechas = servicioFecha.getListaDeFechasEnPreparacion();
+		modelo.put("fechas", fechas);
+		return new ModelAndView("fechas-en-preparacion", modelo);
 	}
 }

@@ -24,7 +24,7 @@
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 					</c:if>
 				</ul>
-			<h1>Se ha creado una fecha perteneciente al torneo ${torneo.nombreTorneo}</h1>
+			<h1>Se ha creado el equipo ${equipo.nombreEquipo} correctamente.</h1>
 		</div>
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>

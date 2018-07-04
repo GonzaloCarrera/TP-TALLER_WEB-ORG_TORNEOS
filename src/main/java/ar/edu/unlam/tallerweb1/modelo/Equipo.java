@@ -22,8 +22,6 @@ public class Equipo {
 	@GeneratedValue
 	private Long id;
 	private String nombreEquipo;
-	@OneToMany()
-	private List<Jugador> jugadores;
 	@ManyToOne()
 	private Usuario usuario;
 	@ManyToMany(cascade = { 
@@ -48,12 +46,6 @@ public class Equipo {
 	}
 	public void setNombreEquipo(String nombreEquipo) {
 		this.nombreEquipo = nombreEquipo;
-	}
-	public List<Jugador> getJugadores() {
-		return jugadores;
-	}
-	public void setJugadores(List<Jugador> jugadores) {
-		this.jugadores = jugadores;
 	}
 	public Usuario getUsuario() {
 		return usuario;

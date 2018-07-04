@@ -37,4 +37,9 @@ public class ServicioFechaImpl implements ServicioFecha{
 	public List<Fecha> getListaDeFechasEnCurso() {
 		return fechaDao.getListaDeFechasEnCurso();
 	}
+
+	@Override
+	public List<Fecha> getListaDeFechasEnPreparacion() {
+		return fechaDao.getListaDeFechasEnPreparacion();
+	}
 }
