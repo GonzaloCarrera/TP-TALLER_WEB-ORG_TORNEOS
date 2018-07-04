@@ -22,7 +22,6 @@ public class Partido {
 	private Boolean finalizado;
 	private Long golesEquipo1;
 	private Long golesEquipo2;
-	
 	@ManyToOne()
 	private Fecha fecha;
 

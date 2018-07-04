@@ -3,7 +3,9 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 public interface PartidoDao {
 
@@ -12,5 +14,9 @@ public interface PartidoDao {
 	List<Partido> getListaDePartidosNoFinalizadosByListaDeEquipos(List<Equipo> equipos);
 
 	List<Partido> getListaDePartidosNoFinalizados();
+	
+	List<Partido> getListaDePartidosDeLaFechaYTorneo(Fecha fecha, Torneo torneo);
+
+	List<Partido> getListaDePartidosDelTorneo(Torneo torneo);
 
 }

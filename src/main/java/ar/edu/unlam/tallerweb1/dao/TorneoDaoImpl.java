@@ -14,15 +14,12 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 
 @Repository("torneoDao")
-public class TorneoDaoImpl implements TorneoDao{
+public class TorneoDaoImpl extends AbstractDao implements TorneoDao{
 
-	@Inject
-    private SessionFactory sessionFactory;
 	
 	@Override
 	public Torneo getTorneoById(Long idTorneo) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Torneo)session.createCriteria(Torneo.class)
+		return (Torneo)getSession().createCriteria(Torneo.class)
 				.add(Restrictions.eq("id", idTorneo))
 				.uniqueResult();
 	}
@@ -33,25 +30,25 @@ public class TorneoDaoImpl implements TorneoDao{
 		session.saveOrUpdate(torneo);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Torneo> getTorneosConInscripcionAbierta() {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Torneo.class)
+		return getSession().createCriteria(Torneo.class)
 				.add(Restrictions.eq("estado", "Inscripcion Abierta"))
 				.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Torneo> getTorneosEnCurso(){
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Torneo.class)
+		return getSession().createCriteria(Torneo.class)
 				.add(Restrictions.eq("estado", "En curso"))
 				.list();
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Torneo> getTorneosFinalizado() {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Torneo.class)
+		return getSession().createCriteria(Torneo.class)
 				.add(Restrictions.eq("estado", "Finalizado"))
 				.list();
 	}

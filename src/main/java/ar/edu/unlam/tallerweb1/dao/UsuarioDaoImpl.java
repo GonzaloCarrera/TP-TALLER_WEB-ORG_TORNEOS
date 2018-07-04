@@ -12,17 +12,13 @@ import javax.inject.Inject;
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
 // para encontrar esta clase.
 @Repository("usuarioDao")
-public class UsuarioDaoImpl implements UsuarioDao {
+public class UsuarioDaoImpl extends AbstractDao implements UsuarioDao {
 
 	// Como todo dao maneja acciones de persistencia, normalmente estará inyectado el session factory de hibernate
 	// el mismo está difinido en el archivo hibernateContext.xml
-	@Inject
-    private SessionFactory sessionFactory;
-
 	@Override
 	public Usuario consultarUsuario(Usuario usuario) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.createCriteria(Usuario.class)
+		return (Usuario) getSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
@@ -30,16 +26,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Override
 	public Usuario getUsuarioById(Long id) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.createCriteria(Usuario.class)
+		return (Usuario) getSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
 	
 	@Override
 	public Integer consultarExistencia(Usuario usuario) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Usuario.class)
+		return getSession().createCriteria(Usuario.class)
 			    .add( Restrictions.disjunction()
 			    	    .add( Restrictions.eq("email", usuario.getEmail()))
 			            .add( Restrictions.eq("username", usuario.getUsername()) )
@@ -50,7 +44,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Override
 	public void guardarUsuario(Usuario usuario) {
-		final Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(usuario);
+		getSession().saveOrUpdate(usuario);
 	}
 }

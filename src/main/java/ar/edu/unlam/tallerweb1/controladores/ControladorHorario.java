@@ -1,23 +1,20 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
-import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFecha;
 import ar.edu.unlam.tallerweb1.servicios.ServicioHorario;
@@ -61,11 +58,16 @@ public class ControladorHorario {
 	public ModelAndView seleccionarHorarioPartidoPost(@RequestParam("idHorario") Long idHorario,
 												      @RequestParam("horaInicio") String horaInicio,
 													  @RequestParam("horaFin") String horaFin) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		ModelMap modelo = new ModelMap();
 		Horario horario = servicioHorario.getHorarioByIdHorario(idHorario);
 		horario.setPermitirSeleccionHorario(false);
-		horario.setHoraInicio(horaInicio);
-		horario.setHoraFin(horaFin);
+		try {
+			horario.setHoraInicio(sdf.parse(horaInicio));
+			horario.setHoraFin(sdf.parse(horaFin));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		servicioHorario.guardarHorario(horario);
 		modelo.put("horario", horario);
 		return new ModelAndView("horario-registrado", modelo);
