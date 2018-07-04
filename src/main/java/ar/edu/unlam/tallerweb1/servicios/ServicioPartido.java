@@ -3,7 +3,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 public interface ServicioPartido {
 	void guardarPartido(Partido partido);
@@ -11,4 +13,8 @@ public interface ServicioPartido {
 	List<Partido> getListaDePartidosNoFinalizadosByListaDeEquipos(List<Equipo> equipos);
 
 	List<Partido> getListaDePartidosNoFinalizados();
+	
+	List<Partido> getListaDePartidosDeLaFechaYTorneo(Fecha fecha, Torneo torneo);
+	
+	List<Partido> getListaDePartidosDelTorneo(Torneo torneo);
 }

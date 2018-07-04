@@ -3,37 +3,27 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
-import ar.edu.unlam.tallerweb1.modelo.Fecha;
-import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 @Repository("equipoDao")
-public class EquipoDaoImpl implements EquipoDao{
-	
-	@Inject
-    private SessionFactory sessionFactory;
+public class EquipoDaoImpl extends AbstractDao implements EquipoDao{
 	
 	@Override
 	public void guardarEquipo(Equipo equipo) {
-		final Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(equipo);
+		getSession().saveOrUpdate(equipo);
 	}
 	
 	@Override
 	public Equipo getEquipoById(Long idEquipo) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Equipo) session.createCriteria(Equipo.class)
+		return (Equipo) getSession().createCriteria(Equipo.class)
 				.add(Restrictions.eq("id", idEquipo))
 				.uniqueResult();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo) {
 		/*List<Equipo> listaDeequipos = this.getListaDeEquiposCompleta();
@@ -46,16 +36,15 @@ public class EquipoDaoImpl implements EquipoDao{
 			}
 		}
 		return equipos;*/
-	final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Equipo.class)
+		return getSession().createCriteria(Equipo.class)
 				.createAlias("torneos", "t")
 				.add(Restrictions.eq("t.id", idTorneo))
 				.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Equipo> getListaDeEquiposCompleta(){
-		final Session session = sessionFactory.getCurrentSession();
-		List<Equipo> equipos = session.createCriteria(Equipo.class)
+		List<Equipo> equipos = getSession().createCriteria(Equipo.class)
 				.list();
 		List<Equipo> listaDeEquipos = new ArrayList<Equipo>();
 		for(Equipo e : equipos){

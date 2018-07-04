@@ -3,26 +3,19 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
-import ar.edu.unlam.tallerweb1.modelo.Horario;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 @Repository("partidoDao")
-public class PartidoDaoImpl implements PartidoDao {
+public class PartidoDaoImpl extends AbstractDao implements PartidoDao {
 
-	@Inject
-    private SessionFactory sessionFactory;
-	
 	@Override
 	public void guardarPartido(Partido partido) {
-		final Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(partido);
+		getSession().saveOrUpdate(partido);
 	}
 	
 	@Override
@@ -39,11 +32,11 @@ public class PartidoDaoImpl implements PartidoDao {
 		return listaDePartidosNoFinalizadosDelUsuario;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Partido> getListaDePartidosNoFinalizados() {
-		final Session session = sessionFactory.getCurrentSession();
 		List<Partido> listaDePartidos = new ArrayList<Partido>();
-		List<Partido> partidos = session.createCriteria(Partido.class)
+		List<Partido> partidos = getSession().createCriteria(Partido.class)
 				.add(Restrictions.eq("finalizado", false))
 				.list();
 		for(Partido p : partidos){
@@ -52,6 +45,23 @@ public class PartidoDaoImpl implements PartidoDao {
 			}
 		}
 		return listaDePartidos;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Partido> getListaDePartidosDeLaFechaYTorneo(Fecha fecha, Torneo torneo) {
+		return getSession().createCriteria(Partido.class)
+				.add(Restrictions.eq("fecha", fecha))
+				.add(Restrictions.eq("fecha.torneo", torneo))
+				.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Partido> getListaDePartidosDelTorneo(Torneo torneo) {
+		return getSession().createCriteria(Partido.class)
+				.add(Restrictions.eq("fecha.torneo", torneo))
+				.list();
 	}
 	
 }

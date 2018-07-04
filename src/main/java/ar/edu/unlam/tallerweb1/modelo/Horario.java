@@ -15,8 +15,8 @@ public class Horario {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String horaInicio;
-	private String horaFin;
+	private Date horaInicio;
+	private Date horaFin;
 	private Boolean permitirSeleccionHorario;
 	private Boolean macheado;
 	
@@ -39,19 +39,19 @@ public class Horario {
 		this.id = id;
 	}
 
-	public String getHoraInicio() {
+	public Date getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(String horaInicio) {
+	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public String getHoraFin() {
+	public Date getHoraFin() {
 		return horaFin;
 	}
 
-	public void setHoraFin(String horaFin) {
+	public void setHoraFin(Date horaFin) {
 		this.horaFin = horaFin;
 	}
 

@@ -16,15 +16,12 @@ import ar.edu.unlam.tallerweb1.modelo.Horario;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 @Repository("horarioDao")
-public class HorarioDaoImpl implements HorarioDao {
+public class HorarioDaoImpl extends AbstractDao implements HorarioDao {
 
-	@Inject
-    private SessionFactory sessionFactory;
 
 	@Override
 	public void guardarHorario(Horario horario) {
-		final Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(horario);
+		getSession().saveOrUpdate(horario);
 	}
 	
 	@Override
@@ -41,11 +38,11 @@ public class HorarioDaoImpl implements HorarioDao {
 		return listaDeHorariosDelUsuario;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Horario> getListaDeHorarioConSeleccionHorarioTrue() {
-		final Session session = sessionFactory.getCurrentSession();
 		List<Horario> listaDeHorarios = new ArrayList<Horario>();
-		List<Horario> horarios = session.createCriteria(Horario.class)
+		List<Horario> horarios = getSession().createCriteria(Horario.class)
 				.add(Restrictions.eq("permitirSeleccionHorario", true))
 				.list();
 		for(Horario h : horarios){
@@ -58,8 +55,7 @@ public class HorarioDaoImpl implements HorarioDao {
 	
 	@Override
 	public Horario getHorarioByIdHorario(Long idHorario) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Horario) session.createCriteria(Horario.class)
+		return (Horario) getSession().createCriteria(Horario.class)
 				.add(Restrictions.eq("id", idHorario))
 				.uniqueResult();
 	}

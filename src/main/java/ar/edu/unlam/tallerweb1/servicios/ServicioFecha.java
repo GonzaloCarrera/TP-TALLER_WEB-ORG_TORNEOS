@@ -10,4 +10,6 @@ public interface ServicioFecha {
 	List<Fecha> getFechasDeUnTorneo(Torneo torneo);
 	List<Fecha> getFechasDeUnTorneoByIdTorneo(Long idTorneo);
 	public List<Fecha> getListaDeFechasEnCurso();
+	public Fecha getFechaActivaDeUnTorneo(Torneo torneo);
+	public Boolean machearEquiposDelTorneoParaLaFechaActiva(Torneo torneo);
 }
