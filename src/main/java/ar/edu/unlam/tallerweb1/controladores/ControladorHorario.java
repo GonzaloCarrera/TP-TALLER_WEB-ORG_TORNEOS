@@ -58,7 +58,9 @@ public class ControladorHorario {
 	public ModelAndView seleccionarHorarioPartidoPost(@RequestParam("idHorario") Long idHorario,
 												      @RequestParam("horaInicio") String horaInicio,
 													  @RequestParam("horaFin") String horaFin) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		horaInicio = horaInicio.replace("T" , " ");
+		horaFin = horaFin.replace("T" , " ");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		ModelMap modelo = new ModelMap();
 		Horario horario = servicioHorario.getHorarioByIdHorario(idHorario);
 		horario.setPermitirSeleccionHorario(false);

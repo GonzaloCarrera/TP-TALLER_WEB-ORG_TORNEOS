@@ -44,8 +44,8 @@
 						<td>${entry.torneo.nombreTorneo}</td>
 						<td>${entry.torneo.cantidadDeEquipos}</td>
 												<td><a
-									href='machear-fecha?idFecha=<c:out value="${entry.id}" />'
-									class="btn btn-primary" role="button"> Machear (falta funcionalidad)
+									href='machear-fecha?idTorneo=<c:out value="${entry.torneo.id}" />'
+									class="btn btn-primary" role="button"> Machear
 								</a></td>
 						    </tr>
   </tbody>

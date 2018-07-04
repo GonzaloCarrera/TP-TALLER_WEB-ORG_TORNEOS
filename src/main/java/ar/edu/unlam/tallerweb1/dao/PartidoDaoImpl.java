@@ -60,7 +60,8 @@ public class PartidoDaoImpl extends AbstractDao implements PartidoDao {
 	@Override
 	public List<Partido> getListaDePartidosDelTorneo(Torneo torneo) {
 		return getSession().createCriteria(Partido.class)
-				.add(Restrictions.eq("fecha.torneo", torneo))
+				.createAlias("fecha", "f")
+				.add(Restrictions.eq("f.torneo", torneo))
 				.list();
 	}
 	

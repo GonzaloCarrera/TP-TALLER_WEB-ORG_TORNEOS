@@ -43,9 +43,9 @@ public class FechaDaoImpl extends AbstractDao implements FechaDao {
 	}
 
 	@Override
-	public Fecha getFechaActivaDeUnTorneo(Torneo torneo) {
+	public Fecha getFechaEnPreparacionDeUnTorneo(Torneo torneo) {
 		return (Fecha) getSession().createCriteria(Fecha.class)
-				.add(Restrictions.eq("estado", "En curso"))
+				.add(Restrictions.eq("estado", "Preparacion"))
 				.add(Restrictions.eq("torneo.id",torneo.getId()))
 				.uniqueResult();
 	}

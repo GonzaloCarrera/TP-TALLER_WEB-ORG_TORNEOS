@@ -30,6 +30,9 @@ public class ServicioFechaImpl implements ServicioFecha{
 	private ServicioEquipo servicioEquipo;
 	
 	@Autowired
+	private ServicioTorneo servicioTorneo;
+	
+	@Autowired
 	private ServicioPartido servicioPartido;
 
 	@Override
@@ -57,14 +60,15 @@ public class ServicioFechaImpl implements ServicioFecha{
 		return fechaDao.getListaDeFechasEnPreparacion();
 	}
 		
-	public Fecha getFechaActivaDeUnTorneo(Torneo torneo) {
-		return fechaDao.getFechaActivaDeUnTorneo(torneo);
+	public Fecha getFechaEnPreparacionDeUnTorneo(Torneo torneo) {
+		return fechaDao.getFechaEnPreparacionDeUnTorneo(torneo);
 	}
 
 	@Override
-	public Boolean machearEquiposDelTorneoParaLaFechaActiva(Torneo torneo) {
+	public Boolean machearEquiposDelTorneoParaLaFechaEnPreparacion(Long idTorneo) {
 		
-		List<Equipo> equipos =  servicioEquipo.getListaDeEquiposByIdTorneo(torneo.getId());
+		List<Equipo> equipos =  servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo);
+		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		List<Partido> partidosDeLaFechaNueva = new ArrayList<>();
 		Map<Equipo,List<Equipo>> mapaDeEquiposDisponibles = new HashMap<Equipo,List<Equipo>>();
 		List<Partido> partidos = servicioPartido.getListaDePartidosDelTorneo(torneo);
@@ -75,7 +79,7 @@ public class ServicioFechaImpl implements ServicioFecha{
 			mapaDeEquiposDisponibles.put(equipo, equiposAux);
 		}
 		
-		Fecha fecha = this.getFechaActivaDeUnTorneo(torneo);
+		Fecha fecha = this.getFechaEnPreparacionDeUnTorneo(torneo);
 		Boolean condicion = false;
 		do{
 			condicion = macheo(equipos, partidosDeLaFechaNueva, mapaDeEquiposDisponibles, fecha);

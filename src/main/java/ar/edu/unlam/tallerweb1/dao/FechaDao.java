@@ -12,5 +12,5 @@ public interface FechaDao {
 	List<Fecha> getFechasDeUnTorneoByIdTorneo(Long idTorneo);
 	public List<Fecha> getListaDeFechasEnCurso();
 	List<Fecha> getListaDeFechasEnPreparacion();
-	Fecha getFechaActivaDeUnTorneo(Torneo torneo);
+	Fecha getFechaEnPreparacionDeUnTorneo(Torneo torneo);
 }

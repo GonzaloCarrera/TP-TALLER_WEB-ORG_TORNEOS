@@ -90,4 +90,13 @@ public class ControladorFecha {
 		modelo.put("fechas", fechas);
 		return new ModelAndView("fechas-en-preparacion", modelo);
 	}
+	
+	@RequestMapping(path= "/machear-fecha")
+	public ModelAndView machearFecha(@RequestParam("idTorneo") Long idTorneo) {
+
+		ModelMap modelo = new ModelMap();
+		Boolean bool = servicioFecha.machearEquiposDelTorneoParaLaFechaEnPreparacion(idTorneo);
+		
+		return new ModelAndView("fecha-macheada", modelo);
+	}
 }
