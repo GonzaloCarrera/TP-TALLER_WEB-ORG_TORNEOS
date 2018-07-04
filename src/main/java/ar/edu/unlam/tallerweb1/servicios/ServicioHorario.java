@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
 
 public interface ServicioHorario {
@@ -11,4 +12,5 @@ public interface ServicioHorario {
 	List<Horario> getListaDeHorariosPermitirSeleccionTrueByIdEquipo(List<Equipo> equipos);
 	List<Horario> getListaDeHorarioConSeleccionHorarioTrue();
 	Horario getHorarioByIdHorario(Long idHorario);
+	public Horario getHorarioPorFechaYEquipo(Fecha fecha,Equipo equipo);
 }

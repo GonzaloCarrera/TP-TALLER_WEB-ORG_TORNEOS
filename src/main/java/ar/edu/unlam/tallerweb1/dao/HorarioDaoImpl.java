@@ -3,17 +3,12 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
-import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 @Repository("horarioDao")
 public class HorarioDaoImpl extends AbstractDao implements HorarioDao {
@@ -57,6 +52,14 @@ public class HorarioDaoImpl extends AbstractDao implements HorarioDao {
 	public Horario getHorarioByIdHorario(Long idHorario) {
 		return (Horario) getSession().createCriteria(Horario.class)
 				.add(Restrictions.eq("id", idHorario))
+				.uniqueResult();
+	}
+
+	@Override
+	public Horario getHorarioPorFechaYEquipo(Fecha fecha, Equipo equipo) {
+		return (Horario) getSession().createCriteria(Horario.class)
+				.add(Restrictions.eq("Fecha", fecha))
+				.add(Restrictions.eq("equipo", equipo))
 				.uniqueResult();
 	}
 	

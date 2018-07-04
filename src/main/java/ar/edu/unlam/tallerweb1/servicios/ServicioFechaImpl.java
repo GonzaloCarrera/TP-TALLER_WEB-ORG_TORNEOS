@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.FechaDao;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
+import ar.edu.unlam.tallerweb1.modelo.Horario;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
@@ -34,6 +35,9 @@ public class ServicioFechaImpl implements ServicioFecha{
 	
 	@Autowired
 	private ServicioPartido servicioPartido;
+	
+	@Autowired
+	private ServicioHorario servicioHorario;
 
 	@Override
 	public void guardarFecha(Fecha fecha) {
@@ -100,11 +104,11 @@ public class ServicioFechaImpl implements ServicioFecha{
 		Set<Equipo> equiposSinUsar = new HashSet<>(equipos);
 		for (Equipo equipo : mapaDeEquiposDisponibles.keySet()) {
 			for(Equipo equipoDisponible :mapaDeEquiposDisponibles.get(equipo)) {
-				if(this.macheoDeHorarioDeLosEquipos(equipo,equipoDisponible) 
+				Partido partido = new Partido();
+				if(this.macheoDeHorarioDeLosEquipos(equipo,equipoDisponible,fecha,partido) 
 						&& !equiposDeLaFecha.contains(equipo) 
 						&& !equiposDeLaFecha.contains(equipoDisponible)) {
 					
-					Partido partido = new Partido();
 					partido.setEquipo1(equipo);
 					partido.setEquipo2(equipoDisponible);
 					partido.setFecha(fecha);
@@ -119,8 +123,22 @@ public class ServicioFechaImpl implements ServicioFecha{
 		return equiposSinUsar.isEmpty();
 	}
 
-	private boolean macheoDeHorarioDeLosEquipos(Equipo equipo, Equipo equipoDisponible) {
-		return true;
+	private boolean macheoDeHorarioDeLosEquipos(Equipo equipo, Equipo equipoDisponible, Fecha fecha, Partido parido) {
+		Horario horarioEquipo =servicioHorario.getHorarioPorFechaYEquipo(fecha, equipo);
+		Horario horarioEquipoDisponible =servicioHorario.getHorarioPorFechaYEquipo(fecha, equipoDisponible);
+		
+		if(horarioEquipo.getHoraInicio().before(horarioEquipoDisponible.getHoraInicio()) && horarioEquipo.getHoraFin().after(horarioEquipoDisponible.getHoraInicio())){
+			parido.setHorario(horarioEquipoDisponible.getHoraInicio());
+			horarioEquipo.setMacheado(true);
+			horarioEquipoDisponible.setMacheado(true);
+			return true;
+		}else if(horarioEquipoDisponible.getHoraInicio().before(horarioEquipo.getHoraInicio()) && horarioEquipoDisponible.getHoraFin().after(horarioEquipo.getHoraInicio())) {
+			parido.setHorario(horarioEquipo.getHoraInicio());
+			horarioEquipo.setMacheado(true);
+			horarioEquipoDisponible.setMacheado(true);
+			return true;
+		}
+		return false;
 	}
 
 	private List<Equipo> equiposQueJugaronConEquipo(Equipo equipo, List<Partido> partidos) {

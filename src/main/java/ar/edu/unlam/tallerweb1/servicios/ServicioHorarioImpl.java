@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.HorarioDao;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
 
 @Service("servicioHorario")
@@ -36,6 +37,11 @@ public class ServicioHorarioImpl implements ServicioHorario {
 	@Override
 	public Horario getHorarioByIdHorario(Long idHorario) {
 		return horarioDao.getHorarioByIdHorario(idHorario);
+	}
+
+	@Override
+	public Horario getHorarioPorFechaYEquipo(Fecha fecha, Equipo equipo) {
+		return horarioDao.getHorarioPorFechaYEquipo(fecha, equipo);
 	}
 	
 	
