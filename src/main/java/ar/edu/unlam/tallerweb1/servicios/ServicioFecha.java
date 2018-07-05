@@ -13,4 +13,6 @@ public interface ServicioFecha {
 	List<Fecha> getListaDeFechasEnPreparacion();
 	public Fecha getFechaEnPreparacionDeUnTorneo(Torneo torneo);
 	public Boolean machearEquiposDelTorneoParaLaFechaEnPreparacion(Long idTorneo);
+	public Integer getCantidadDeFechasActivasDeUnTorneo(Long idTorneo);
+	Integer getCantidadDeFechasDeUnTorneo(Torneo torneo);
 }
