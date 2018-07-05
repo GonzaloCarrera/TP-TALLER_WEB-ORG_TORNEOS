@@ -82,13 +82,10 @@ public class ControladorTorneo {
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		equipo.getTorneos().add(torneo);
 		servicioEquipo.guardarEquipo(equipo);
-<<<<<<< HEAD
 		if(servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo).size()>=torneo.getCantidadDeEquipos()){
 			torneo.setEstado("En curso");
 			servicioTorneo.guardarTorneo(torneo);
 		}
-=======
->>>>>>> parent of 662dc97... Validaciones iniciar fecha
 		modelo.put("equipo", equipo);
 		modelo.put("torneo", torneo);
 		return new ModelAndView("equipo-torneo-registrado", modelo);
