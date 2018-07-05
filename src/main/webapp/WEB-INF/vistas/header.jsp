@@ -25,6 +25,7 @@
 						<h4 id="nombreUsuario" style="color: #9d9d9d;">${usuario.username}</h4>
 						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
 				</c:if>
+				
 	        </div>
 	      </nav>
 	    </header>
