@@ -151,21 +151,4 @@ public class ServicioFechaImpl implements ServicioFecha{
 		}
 		return new ArrayList<>(equipos);
 	}
-
-	@Override
-	public Integer getCantidadDeFechasActivasDeUnTorneo(Long idTorneo) {
-			Integer contador = 0;
-			List<Fecha> fechas = fechaDao.getFechasDeUnTorneoByIdTorneo(idTorneo);
-			for(Fecha f : fechas){
-				if(f.getEstado().equals("En curso")||f.getEstado().equals("Preparacion")){
-					contador++;
-				}
-			}
-			return contador;
-		}
-
-	@Override
-	public Integer getCantidadDeFechasDeUnTorneo(Torneo torneo) {
-		return fechaDao.getCantidadDeFechasDeUnTorneo(torneo);
-	}
 }

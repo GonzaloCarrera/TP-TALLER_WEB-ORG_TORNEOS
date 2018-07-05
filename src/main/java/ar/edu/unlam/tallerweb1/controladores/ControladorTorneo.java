@@ -18,7 +18,6 @@ import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
-import ar.edu.unlam.tallerweb1.servicios.ServicioFecha;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
@@ -30,9 +29,6 @@ public class ControladorTorneo {
 	
 	@Inject
 	private ServicioEquipo servicioEquipo;
-	
-	@Inject
-	private ServicioFecha servicioFecha;
 	
 	@RequestMapping("/registrar-torneo")
 	public ModelAndView registrarTorneo() {
@@ -86,10 +82,13 @@ public class ControladorTorneo {
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		equipo.getTorneos().add(torneo);
 		servicioEquipo.guardarEquipo(equipo);
+<<<<<<< HEAD
 		if(servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo).size()>=torneo.getCantidadDeEquipos()){
 			torneo.setEstado("En curso");
 			servicioTorneo.guardarTorneo(torneo);
 		}
+=======
+>>>>>>> parent of 662dc97... Validaciones iniciar fecha
 		modelo.put("equipo", equipo);
 		modelo.put("torneo", torneo);
 		return new ModelAndView("equipo-torneo-registrado", modelo);

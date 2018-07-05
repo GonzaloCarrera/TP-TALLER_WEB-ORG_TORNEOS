@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository("fechaDao")
 public class FechaDaoImpl extends AbstractDao implements FechaDao {
@@ -24,15 +23,6 @@ public class FechaDaoImpl extends AbstractDao implements FechaDao {
 		return getSession().createCriteria(Fecha.class)
 			.add(Restrictions.eq("torneo", torneo))
 			.list();
-	}
-	
-	@Override
-	@SuppressWarnings("unchecked")
-	public Integer getCantidadDeFechasDeUnTorneo(Torneo torneo){
-		return getSession().createCriteria(Fecha.class)
-			.add(Restrictions.eq("torneo", torneo))
-			.list()
-			.size();
 	}
 	
 	@Override
@@ -61,11 +51,9 @@ public class FechaDaoImpl extends AbstractDao implements FechaDao {
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<Fecha> getListaDeFechasEnPreparacion(){
 		return getSession().createCriteria(Fecha.class)
 			.add(Restrictions.eq("estado", "Preparacion"))
 			.list();
 	}
-	
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.dao.FechaDao;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
@@ -41,18 +40,15 @@ public class ControladorFecha {
 	public ModelAndView iniciarFecha() {
 
 		ModelMap modelo = new ModelMap();
+		Fecha fecha = new Fecha();
 		modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
 		return new ModelAndView("iniciar-fecha", modelo);
 	}
 	
 	@RequestMapping(path= "/iniciar-fecha-torneo")
 	public ModelAndView iniciarFechaPost(@RequestParam("idTorneo") Long idTorneo) {
-		ModelMap modelo = new ModelMap();
-		if(servicioFecha.getCantidadDeFechasActivasDeUnTorneo(idTorneo)>0){
-			modelo.put("error", "El torneo ya tiene una fecha activa.");
-			modelo.put("torneos", servicioTorneo.getTorneosEnCurso());
-			return new ModelAndView("iniciar-fecha", modelo);
-		}
+
+		ModelMap modelo = new ModelMap(); //faltan agregar validaciones, ej: si el torneo ya tiene una fecha en curso no podria iniciarse otra fecha.
 		Fecha fecha = new Fecha();
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo);
@@ -63,10 +59,6 @@ public class ControladorFecha {
 			horario.setEquipo(e);
 			horario.setFecha(fecha);
 			servicioHorario.guardarHorario(horario);
-		}
-		if(servicioFecha.getCantidadDeFechasDeUnTorneo(torneo)>=(torneo.getCantidadDeEquipos()-1)){
-			torneo.setEstado("Finalizado");
-			servicioTorneo.guardarTorneo(torneo);
 		}
 		modelo.put("torneo", torneo);
 		return new ModelAndView("fecha-creada", modelo);
