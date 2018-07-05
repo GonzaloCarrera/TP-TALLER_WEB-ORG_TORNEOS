@@ -58,7 +58,7 @@ public class HorarioDaoImpl extends AbstractDao implements HorarioDao {
 	@Override
 	public Horario getHorarioPorFechaYEquipo(Fecha fecha, Equipo equipo) {
 		return (Horario) getSession().createCriteria(Horario.class)
-				.add(Restrictions.eq("Fecha", fecha))
+				.add(Restrictions.eq("fecha", fecha))
 				.add(Restrictions.eq("equipo", equipo))
 				.uniqueResult();
 	}

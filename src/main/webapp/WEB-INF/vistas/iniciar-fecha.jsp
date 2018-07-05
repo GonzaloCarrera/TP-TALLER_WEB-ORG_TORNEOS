@@ -26,6 +26,10 @@
 					</c:if>
 				</ul>
       
+      <c:if test="${not empty error}">
+			        <h4><span>${error}</span></h4>
+			        <br>
+		        </c:if>	
       	 	
       	 	<table class="table table-sm">
   <thead>
@@ -53,6 +57,7 @@
 	      		 </c:forEach>
 
 </table>
+
       	
       	
 		</div>
