@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFecha;
@@ -85,7 +86,7 @@ public class ControladorTorneo {
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		equipo.getTorneos().add(torneo);
 		servicioEquipo.guardarEquipo(equipo);
-		if(servicioFecha.getFechasDeUnTorneoByIdTorneo(idTorneo).size()>=torneo.getCantidadDeEquipos()){
+		if(servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo).size()>=torneo.getCantidadDeEquipos()){
 			torneo.setEstado("En curso");
 			servicioTorneo.guardarTorneo(torneo);
 		}
