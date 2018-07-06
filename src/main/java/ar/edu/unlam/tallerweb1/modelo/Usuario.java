@@ -11,12 +11,11 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(unique=true, nullable=false)
+	@Column(unique=true)
 	private String username;
 	private String password;
-	@Column(unique=true, nullable=false)
+	@Column(unique=true)
 	private String email;
-	@Column(nullable=false)
 	private Boolean esAdmin;
 	
 	public Usuario(){
