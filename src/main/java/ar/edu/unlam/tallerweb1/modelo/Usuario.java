@@ -19,6 +19,7 @@ public class Usuario {
 	private Boolean esAdmin;
 	
 	public Usuario(){
+		this.esAdmin=false;
 	}
 	
 	public Long getId() {

@@ -81,7 +81,7 @@ public class ControladorTorneo {
 		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
 		equipo.getTorneos().add(torneo);
 		servicioEquipo.guardarEquipo(equipo);
-		if(servicioFecha.getFechasDeUnTorneoByIdTorneo(idTorneo).size()>=torneo.getCantidadDeEquipos()){
+		if(servicioEquipo.getListaDeEquiposByIdTorneo(idTorneo).size()>=torneo.getCantidadDeEquipos()){
 			torneo.setEstado("En curso");
 			servicioTorneo.guardarTorneo(torneo);
 		}

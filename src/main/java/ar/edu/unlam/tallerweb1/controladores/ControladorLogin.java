@@ -84,6 +84,6 @@ public class ControladorLogin {
 	@RequestMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("usuario");
-		return new ModelAndView("redirect:/home");
+		return new ModelAndView("redirect:/login");
 	}
 }
