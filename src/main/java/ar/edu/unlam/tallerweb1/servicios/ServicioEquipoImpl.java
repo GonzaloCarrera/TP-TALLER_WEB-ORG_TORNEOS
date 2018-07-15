@@ -37,4 +37,16 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 	public Equipo getEquipoById(Long idEquipo) {
 		return equipoDao.getEquipoById(idEquipo);
 	}
+	
+	@Override
+	public Integer getCantidadDeEquiposRegistradorEnElTorneoPorElUsuario(Long idTorneo, Long idUsuario){
+		List<Equipo> equipos = this.getListaDeEquiposByIdTorneo(idTorneo);
+		Integer cont = 0;
+		for(Equipo e : equipos){
+			if(e.getUsuario().getId()==idUsuario){
+				cont++;
+			}
+		}
+		return cont;
+	}
 }

@@ -1,132 +1,86 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-	<head>
-		<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet" >
-	    <!-- Bootstrap theme -->
-	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class = "container">
-		
-		
-				<ul class='nav navbar-nav navbar-right'>
-					<c:set var="usuario" value="${usuario}" scope="session" />
-					<c:if test="${empty usuario.username}">
-						<li><a href='registrar'><span class='glyphicon glyphicon-user'></span>&nbsp;Registrarse</a></li>
-						<li><a href='login'><span class='glyphicon glyphicon-log-in'></span>&nbsp;Login</a></li>
-					</c:if>
-					<c:if test="${not empty usuario.username}">
-						<li style="color: #9d9d9d; padding-top: 1em;">
-								Bienvenido, ${usuario.username}.
-						</li>
-						<li><a href='logout'><span class='glyphicon glyphicon-log-out'></span>&nbsp;Logout</a></li>
-					</c:if>
-				</ul>
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-				<form:form action="registrar-equipo" method="POST">
-			    	<h3 class="form-signin-heading">Registrar Equipo</h3>
-					<hr class="colorgraph"><br>		
-					
-	<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre del Equipo</label>
-    <div class="col-sm-10">
-      <input id="nombreEquipo" name="nombreEquipo" type="text" class="form-control" placeholder="Nombre del equipo" required/>
-    </div>
-  </div>
+<html lang="en">
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>Fulbito</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <link rel="shortcut icon" href="" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/colors.css">
+   <link rel="stylesheet" href="css/versions.css">
+   <link rel="stylesheet" href="css/responsive.css">
+   <link rel="stylesheet" href="css/custom.css">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+   </head>
+   <body class="game_info" data-spy="scroll" data-target=".header">
+      <!-- LOADER -->
+      <div id="preloader">
+         <img class="preloader" src="images/loading-img.gif" alt="">
+      </div>
+      <%@include file="header.jsp" %>
+      <div class="inner-information-text">
+            <div class="container">
+               <h3>Registrar Equipo</h3>
+               <ul class="breadcrumb">
+                  <li><a href="home">Home</a></li>
+                  <li class="active">Registrar Equipo</li>
+               </ul>
+            </div>
+      </div>
+      <section id="contant" class="contant main-heading team">
+         <div class="row">
+            <div class="container">
+               <div class="contact">
+                  <div class="col-md-6 col-md-offset-3">
+                     <div class="contact-us">
+                     <h2 stye="text-align:center">Registrar equipo</h2>
+                        <form:form action="registrar-equipo" method="POST" class="comments-form">
+                        <ul>
+                              <li><input id="nombreEquipo" name="nombreEquipo" type="text" class="form-control" placeholder="Nombre del Equipo (*)" required/><input type="hidden" name="idUsuario" value="${user.id}" id="usuario"/>    </li>
+                              <li><input id="nombreJugador1" name="nombreJugador1" type="text" class="form-control email" placeholder="Nombre del jugador 1 (*)" required /></li>
+                              <li><input id="nombreJugador2" name="nombreJugador2" type="text" class="form-control" placeholder="Nombre del jugador 2 (*)" required /></li>                       
+                              <li><input id="nombreJugador3" name="nombreJugador3" type="text" class="form-control" placeholder="Nombre del jugador 3 (*)" required /></li>
+                              <li><input id="nombreJugador4" name="nombreJugador4" type="text" class="form-control" placeholder="Nombre del jugador 4 (*)" required /></li>
+                              <li><input id="nombreJugador5" name="nombreJugador5" type="text" class="form-control" placeholder="Nombre del jugador 5 (*)" required /></li>
+                              <li><input id="nombreJugador6" name="nombreJugador6" type="text" class="form-control" placeholder="Nombre del jugador 6 (*)" required /></li>
+                              <li><input id="nombreJugador7" name="nombreJugador7" type="text" class="form-control" placeholder="Nombre del jugador 7 (*)" required /></li>
+                              <li><input id="nombreJugador8" name="nombreJugador8" type="text" class="form-control" placeholder="Nombre del jugador 8 (*)" required /></li>
+                              <li><input id="nombreJugador9" name="nombreJugador9" type="text" class="form-control" placeholder="Nombre del jugador 9 (*)" required /></li>
+                              <li><input id="nombreJugador10" name="nombreJugador10" type="text" class="form-control" placeholder="Nombre del jugador 10 (*)" required /></li>
+                              <li><input class="btn btn-lg btn-success btn-block" type="submit" value="Registrar Equipo"></li>
+                           </ul>
+                           <div class="hidden-me" id="contact_form_responce">
+                              <p></p>
+                           </div>
+                        </form:form>
+                        <c:if test="${not empty error}">
+					        <h4><span>${error}</span></h4>
+					        <br>
+				        </c:if>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
 
-      <input type="hidden" name="idUsuario" value="${usuario.id}" id="usuario"/>    	
-			  		
-			  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">1° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador1" name="nombreJugador1" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-			
-			
-		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">2° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador2" name="nombreJugador2" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>	
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">3° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador3" name="nombreJugador3" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">4° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador4" name="nombreJugador4" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">5° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador5" name="nombreJugador5" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">6° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador6" name="nombreJugador6" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">7° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador7" name="nombreJugador7" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">8° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador8" name="nombreJugador8" type="text" class="form-control" placeholder="Nombre del jugador" required/>
-    </div>
-  </div>
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">9° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador9" name="nombreJugador9" type="text" class="form-control" placeholder="Nombre del jugador" required />
-    </div>
-  </div>
-  
-  		<div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">10° Jugador</label>
-    <div class="col-sm-10">
-      <input id="nombreJugador10" name="nombreJugador10" type="text" class="form-control" placeholder="Nombre del jugador" required />
-    </div>
-  </div>	
-					
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>Registrar Equipo</button>
-				</form:form>
-				
-
-
-				<%--Bloque que es visible si el elemento error no estÃ¡ vacÃ­o	--%>
-				<c:if test="${not empty error}">	
-			        <h4><span>${error}</span></h4>
-			        <br>
-		        </c:if>	
-			</div>
-		</div>
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	</body>
+      <footer id="footer" class="footer">
+         <%@include file="footer.jsp" %> 
+      </footer>
+      <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+      <!-- ALL JS FILES -->
+      <script src="js/all.js"></script>
+      <!-- ALL PLUGINS -->
+      <script src="js/custom.js"></script>
+   </body>
 </html>

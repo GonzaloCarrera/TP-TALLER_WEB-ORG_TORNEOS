@@ -18,6 +18,7 @@ public class PartidoDaoImpl extends AbstractDao implements PartidoDao {
 		getSession().saveOrUpdate(partido);
 	}
 	
+	
 	@Override
 	public List<Partido> getListaDePartidosNoFinalizadosByListaDeEquipos(List<Equipo> equipos) {
 		List<Partido> partidos = this.getListaDePartidosNoFinalizados();
@@ -50,19 +51,87 @@ public class PartidoDaoImpl extends AbstractDao implements PartidoDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Partido> getListaDePartidosDeLaFechaYTorneo(Fecha fecha, Torneo torneo) {
-		return getSession().createCriteria(Partido.class)
+		List<Partido> listaDePartidos = new ArrayList<Partido>();
+		List<Partido> partidos = getSession().createCriteria(Partido.class)
 				.add(Restrictions.eq("fecha", fecha))
-				.add(Restrictions.eq("fecha.torneo", torneo))
-				.list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Partido> getListaDePartidosDelTorneo(Torneo torneo) {
-		return getSession().createCriteria(Partido.class)
 				.createAlias("fecha", "f")
 				.add(Restrictions.eq("f.torneo", torneo))
 				.list();
+		for(Partido p : partidos){
+			if(!listaDePartidos.contains(p)){
+				listaDePartidos.add(p);
+			}
+		}	
+		return listaDePartidos;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Partido> getListaDePartidosDeLaFecha(Long idFecha) {
+		List<Partido> listaDePartidos = new ArrayList<Partido>();
+		List<Partido> partidos = getSession().createCriteria(Partido.class)
+				.add(Restrictions.eq("finalizado", false))
+				.createAlias("fecha", "f")
+				.add(Restrictions.eq("f.id", idFecha))
+				.list();
+		for(Partido p : partidos){
+			if(!listaDePartidos.contains(p)){
+				listaDePartidos.add(p);
+			}
+		}	
+		return listaDePartidos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Partido> getListaDePartidosDelTorneo(Torneo torneo) {
+		Partido partido = new Partido();
+		List<Partido> listaDePartidos = new ArrayList<Partido>();
+		List<Partido> partidos = getSession().createCriteria(Partido.class)
+				.createAlias("fecha", "f")
+				.add(Restrictions.eq("f.torneo", torneo))
+				.list();
+		for(Partido p : partidos){
+			if(!listaDePartidos.contains(p)){
+				listaDePartidos.add(p);
+			}
+		}	
+		return listaDePartidos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Partido> getListaDePartidosDelTorneoFinalizados(Torneo torneo) {
+		Partido partido = new Partido();
+		List<Partido> listaDePartidos = new ArrayList<Partido>();
+		List<Partido> partidos = getSession().createCriteria(Partido.class)
+				.createAlias("fecha", "f")
+				.add(Restrictions.eq("f.torneo", torneo))
+				.add(Restrictions.eq("finalizado", true))
+				.list();
+		for(Partido p : partidos){
+			if(!listaDePartidos.contains(p)){
+				listaDePartidos.add(p);
+			}
+		}	
+		return listaDePartidos;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Partido getPartidoByIdPartido(Long idPartido) {
+		Partido partido = new Partido();
+		List<Partido> listaDePartidos = new ArrayList<Partido>();
+		List<Partido> partidos = getSession().createCriteria(Partido.class)
+				.add(Restrictions.eq("id", idPartido))
+				.list();
+		for(Partido p : partidos){
+			if(!listaDePartidos.contains(p)){
+				listaDePartidos.add(p);
+				partido = p;
+			}
+		}	
+		return partido;
 	}
 	
 }

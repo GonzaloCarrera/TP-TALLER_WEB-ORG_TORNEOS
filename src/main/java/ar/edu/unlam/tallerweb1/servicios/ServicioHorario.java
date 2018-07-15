@@ -13,4 +13,5 @@ public interface ServicioHorario {
 	List<Horario> getListaDeHorarioConSeleccionHorarioTrue();
 	Horario getHorarioByIdHorario(Long idHorario);
 	public Horario getHorarioPorFechaYEquipo(Fecha fecha,Equipo equipo);
+	Integer getCantidadDeEquiposQueSeleccionaronHorarioByIdFecha(Long idFecha);
 }

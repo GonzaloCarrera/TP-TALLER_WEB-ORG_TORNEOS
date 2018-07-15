@@ -43,6 +43,11 @@ public class ServicioHorarioImpl implements ServicioHorario {
 	public Horario getHorarioPorFechaYEquipo(Fecha fecha, Equipo equipo) {
 		return horarioDao.getHorarioPorFechaYEquipo(fecha, equipo);
 	}
+
+	@Override
+	public Integer getCantidadDeEquiposQueSeleccionaronHorarioByIdFecha(Long idFecha) {
+		return horarioDao.getCantidadDeEquiposQueSeleccionaronHorarioByIdFecha(idFecha);
+	}
 	
 	
 }

@@ -10,4 +10,5 @@ public interface ServicioEquipo {
 	List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo);
 	List<Equipo> getListaDeEquiposByIdUsuario(Long idUsuario);
 	Equipo getEquipoById(Long idEquipo);
+	public Integer getCantidadDeEquiposRegistradorEnElTorneoPorElUsuario(Long idTorneo, Long idUsuario);
 }

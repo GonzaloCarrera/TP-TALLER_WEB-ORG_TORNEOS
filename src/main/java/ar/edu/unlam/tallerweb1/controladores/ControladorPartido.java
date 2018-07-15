@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,6 +47,11 @@ public class ControladorPartido {
 		ModelMap modelo = new ModelMap();
 		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdUsuario(idUsuario);
 		List<Partido> partidos = servicioPartido.getListaDePartidosNoFinalizadosByListaDeEquipos(equipos);
+		List<Integer> fechaNumero = new ArrayList<Integer>();
+		for(Partido p : partidos){
+			fechaNumero.add(servicioFecha.getCantidadDeFechasDeUnTorneo(p.getFecha().getTorneo()));
+		}
+		modelo.put("fechaNumero", fechaNumero);
 		modelo.put("partidos", partidos);
 		return new ModelAndView("proximos-partidos", modelo);
 	}

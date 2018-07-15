@@ -26,16 +26,6 @@ public class EquipoDaoImpl extends AbstractDao implements EquipoDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Equipo> getListaDeEquiposByIdTorneo(Long idTorneo) {
-		/*List<Equipo> listaDeequipos = this.getListaDeEquiposCompleta();
-		List<Equipo> equipos = new ArrayList<Equipo>();
-		for(Equipo e : listaDeequipos){
-			for(Torneo t : e.getTorneos()){
-				if(t.getId()==idTorneo){
-					equipos.add(e);
-				}
-			}
-		}
-		return equipos;*/
 		return getSession().createCriteria(Equipo.class)
 				.createAlias("torneos", "t")
 				.add(Restrictions.eq("t.id", idTorneo))
@@ -61,14 +51,13 @@ public class EquipoDaoImpl extends AbstractDao implements EquipoDao{
 		List<Equipo> equiposDelUsuario= new ArrayList<Equipo>();
 		for(Equipo e : equipos){
 			if(e.getUsuario().getId()==idUsuario){
+				if(!equiposDelUsuario.contains(e)){
 					equiposDelUsuario.add(e);
+				}
 			}
 		}
 		return equiposDelUsuario;
-		/*final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Equipo.class)
-				.createAlias("usuario", "u")
-				.add(Restrictions.eq("u.id", idUsuario))
-				.list();*/
-	}//ERROR, TRAE VALORES REPETIDOS
+	}
+
+	
 }

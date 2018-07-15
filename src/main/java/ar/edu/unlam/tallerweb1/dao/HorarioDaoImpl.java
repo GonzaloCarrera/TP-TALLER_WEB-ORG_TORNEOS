@@ -58,9 +58,25 @@ public class HorarioDaoImpl extends AbstractDao implements HorarioDao {
 	@Override
 	public Horario getHorarioPorFechaYEquipo(Fecha fecha, Equipo equipo) {
 		return (Horario) getSession().createCriteria(Horario.class)
-				.add(Restrictions.eq("Fecha", fecha))
+				.add(Restrictions.eq("fecha", fecha))
 				.add(Restrictions.eq("equipo", equipo))
 				.uniqueResult();
+	}
+	
+	@Override
+	public Integer getCantidadDeEquiposQueSeleccionaronHorarioByIdFecha(Long idFecha) {
+		List<Horario> listaDeHorarios = new ArrayList<Horario>();
+		List<Horario> horarios = getSession().createCriteria(Horario.class)
+				.createAlias("fecha", "f")
+				.add(Restrictions.eq("f.id", idFecha))
+				.add(Restrictions.eq("permitirSeleccionHorario", false))
+				.list();
+		for(Horario h : horarios){
+			if(!listaDeHorarios.contains(h)){
+				listaDeHorarios.add(h);
+			}
+		}
+		return listaDeHorarios.size();
 	}
 	
 }

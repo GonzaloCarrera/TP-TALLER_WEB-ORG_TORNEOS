@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ public class Fecha {
 	@GeneratedValue
 	private Long id;
 	private String estado; // Preparacion, En curso, Finalizada
+	private Date horaInicio;
+	private Date horaFin;
 	@ManyToOne()
 	private Torneo torneo;
 
@@ -22,6 +26,18 @@ public class Fecha {
 		return id;
 	}
 
+	public Date getHoraInicio() {
+		return horaInicio;
+	}
+	public void setHoraInicio(Date horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+	public Date getHoraFin() {
+		return horaFin;
+	}
+	public void setHoraFin(Date horaFin) {
+		this.horaFin = horaFin;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}

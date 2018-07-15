@@ -17,4 +17,6 @@ public interface HorarioDao {
 	Horario getHorarioByIdHorario(Long idHorario);
 
 	Horario getHorarioPorFechaYEquipo(Fecha fecha, Equipo equipo);
+
+	Integer getCantidadDeEquiposQueSeleccionaronHorarioByIdFecha(Long idFecha);
 }

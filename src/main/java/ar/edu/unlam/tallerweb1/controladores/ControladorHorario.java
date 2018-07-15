@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFecha;
@@ -41,6 +43,11 @@ public class ControladorHorario {
 		ModelMap modelo = new ModelMap();
 		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdUsuario(idUsuario);
 		List<Horario> horarios = servicioHorario.getListaDeHorariosPermitirSeleccionTrueByIdEquipo(equipos);
+		List<Integer> fechaNumero = new ArrayList<Integer>();
+		for(Horario h : horarios){
+			fechaNumero.add(servicioFecha.getCantidadDeFechasDeUnTorneo(h.getFecha().getTorneo()));
+		}
+		modelo.put("fechaNumero", fechaNumero);
 		modelo.put("horarios", horarios);
 		return new ModelAndView("seleccionar-horario", modelo);
 	}
@@ -50,6 +57,10 @@ public class ControladorHorario {
 
 		ModelMap modelo = new ModelMap();
 		Horario horario = servicioHorario.getHorarioByIdHorario(idHorario);
+		Fecha fecha = servicioFecha.getFechaByIdFecha(horario.getFecha().getId());
+		
+		modelo.put("horaInicio", fecha.getHoraInicio().toString().replace(" " , "T"));
+		modelo.put("horaFin", fecha.getHoraFin().toString().replace(" " , "T"));
 		modelo.put("horario", horario);
 		return new ModelAndView("seleccionar-horario-partido", modelo);
 	}

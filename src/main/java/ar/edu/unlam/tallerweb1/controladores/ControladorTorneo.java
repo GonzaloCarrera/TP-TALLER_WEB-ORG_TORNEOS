@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Estadistica;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioFecha;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPartido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
@@ -28,6 +33,12 @@ public class ControladorTorneo {
 	
 	@Inject
 	private ServicioEquipo servicioEquipo;
+	
+	@Inject
+	private ServicioFecha servicioFecha;
+	
+	@Inject
+	private ServicioPartido servicioPartido;
 	
 	@RequestMapping("/registrar-torneo")
 	public ModelAndView registrarTorneo() {
@@ -56,10 +67,19 @@ public class ControladorTorneo {
 	}
 	
 	@RequestMapping("/listado-torneo-inscripcion-abierta")
-	public ModelAndView listadoTorneosInscripcionAbierta() {
+	public ModelAndView listadoTorneosInscripcionAbierta(@RequestParam("idUsuario") Long idUsuario) {
 		
 		ModelMap modelo = new ModelMap();
-		modelo.put("torneos", servicioTorneo.getTorneosConInscripcionAbierta());
+		List<Integer> equiposIncriptos = new ArrayList<Integer>();
+		List<Torneo> torneos = servicioTorneo.getTorneosConInscripcionAbierta();
+		List<Integer> validarCantidadDeEquiposRegistradosEnElTorneo = new ArrayList<Integer>();
+		for(Torneo t : torneos){
+			equiposIncriptos.add(servicioEquipo.getListaDeEquiposByIdTorneo(t.getId()).size());
+			validarCantidadDeEquiposRegistradosEnElTorneo.add(servicioEquipo.getCantidadDeEquiposRegistradorEnElTorneoPorElUsuario(t.getId(), idUsuario));
+		}
+		modelo.put("torneos", torneos);
+		modelo.put("validarCantidadDeEquiposRegistradosEnElTorneo",validarCantidadDeEquiposRegistradosEnElTorneo);
+		modelo.put("equiposIncriptos", equiposIncriptos);
 		return new ModelAndView("listado-torneo-inscripcion-abierta", modelo);
 	}
 	
@@ -97,13 +117,30 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 		List<Torneo> torneos = new ArrayList<Torneo>();
 		List<Equipo> equipos = servicioEquipo.getListaDeEquiposByIdUsuario(idUsuario);
+		List<Integer> equiposIncriptos = new ArrayList<Integer>();
 		for(Equipo e : equipos){
 			for(Torneo t : e.getTorneos()){
+				if(!torneos.contains(t)){
 				torneos.add(t);
+				equiposIncriptos.add(servicioEquipo.getListaDeEquiposByIdTorneo(t.getId()).size());
+				}
 			}
 		}
 		modelo.put("torneos", torneos);
+		modelo.put("equiposIncriptos", equiposIncriptos);
 		return new ModelAndView("mis-torneos", modelo);
+	}
+	
+	@RequestMapping("/estadisticas")
+	public ModelAndView estadisticas(@RequestParam("idTorneo") Long idTorneo) {
+		
+		ModelMap modelo = new ModelMap();
+		Torneo torneo = servicioTorneo.getTorneoById(idTorneo);
+		List<Estadistica> rank = servicioPartido.getTablaDePosicionesByTorneo(torneo);
+		Collections.sort(rank);
+		modelo.put("rank", rank);
+		modelo.put("torneo", torneo);
+		return new ModelAndView("estadisticas", modelo);
 	}
 
 
