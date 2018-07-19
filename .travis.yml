@@ -1,0 +1,9 @@
+language: java
+notifications:
+  email:
+    recipients:
+      - marcosreaper@gmail.com
+      - diego.gustavo.sejas2013@gmail.com
+      - gonzalonahuelcarrera@gmail.com
+    on_success: never # default: change
+    on_failure: always # default: always
