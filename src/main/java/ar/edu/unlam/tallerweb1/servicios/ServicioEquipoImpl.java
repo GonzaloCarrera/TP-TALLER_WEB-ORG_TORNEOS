@@ -49,4 +49,9 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 		}
 		return cont;
 	}
+
+	@Override
+	public void setDao(EquipoDao equipo) {
+		this.equipoDao = equipo;
+	}
 }

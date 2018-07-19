@@ -213,6 +213,51 @@ public class EquipoTest extends SpringTest{
 		Assert.assertTrue(equiposDelUsuario.size() == 1);
 	}
 	
+	@Test
+	@Transactional
+	@SuppressWarnings("unchecked")
+	public void testGetCantidadDeEquiposRegistradorEnElTorneoPorElUsuario() {
+		Torneo unTorneo = new Torneo();
+		unTorneo.setCantidadDeEquipos(new Long(4));
+		unTorneo.setDescripcionTorneo("Torneo Test");
+		unTorneo.setNombreTorneo("Primer Torneo");
+		
+		Usuario unUsuario = new Usuario();
+
+		unUsuario.setUsername("Nombre Test");
+		unUsuario.setPassword("123456");
+		unUsuario.setEsAdmin(true);
+		unUsuario.setEmail("unCorreo@fulbito.com");
+		
+		Equipo equipo = new Equipo();
+		equipo.setNombreEquipo("Equipo Test");
+		List<Torneo> torneos = new ArrayList();
+		torneos.add(unTorneo);
+		equipo.setTorneos(torneos);
+	    equipo.setUsuario(unUsuario);
+
+		Equipo equipoDos = new Equipo();
+		equipoDos.setNombreEquipo("Segundo Equipo");
+		equipoDos.setTorneos(torneos);
+		equipoDos.setUsuario(unUsuario);
+		
+		Session session = getSession();
+		session.saveOrUpdate(unUsuario);
+		session.saveOrUpdate(equipo);
+
+		List<Equipo> equipos =  session.createCriteria(Equipo.class)
+				.createAlias("torneos", "t")
+				.add(Restrictions.eq("t.id", equipo.getTorneos().get(0).getId()))
+				.list();
+
+		Integer cont = 0;
+		for(Equipo e : equipos){
+			if(e.getUsuario().getId()==unUsuario.getId()){
+				cont++;
+			}
+		}
+		Assert.assertTrue(cont > 0);
+	}
 }
 
 

@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.dao.FechaDao;
 import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
@@ -17,4 +18,5 @@ public interface ServicioFecha {
 	Integer getCantidadDeFechasDeUnTorneo(Torneo torneo);
 	Fecha getFechaByIdFecha(Long idFecha);
 	List<Fecha> getFechasEnCursoOFinalizadasDeUnTorneoByIdTorneo(Long idTorneo);
+	void setDao(FechaDao fecha);
 }

@@ -277,6 +277,11 @@ public class ServicioFechaImpl implements ServicioFecha{
 	public List<Fecha> getFechasEnCursoOFinalizadasDeUnTorneoByIdTorneo(Long idTorneo) {
 		return fechaDao.getFechasEnCursoOFinalizadasDeUnTorneoByIdTorneo(idTorneo);
 	}
+
+	@Override
+	public void setDao(FechaDao fecha) {
+		this.fechaDao = fecha;
+	}
 	
 	
 }
