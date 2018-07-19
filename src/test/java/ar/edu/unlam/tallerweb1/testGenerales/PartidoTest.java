@@ -572,6 +572,6 @@ public class PartidoTest extends SpringTest{
 			}
 		}
 
-		Assert.assertTrue(rank.size() == 1);
+		Assert.assertTrue(rank.size() == 2);
 	}
 }
