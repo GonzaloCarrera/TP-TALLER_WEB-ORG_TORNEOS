@@ -64,7 +64,7 @@
                                        <a class="navbar-brand" href="#">Menu</a>
                                     </div>
                                     <div class="collapse navbar-collapse js-navbar-collapse">
-                                       <ul class="nav navbar-nav">
+                                       <ul class="nav navbar-nav"> 
                                        	 <c:set var="user" value="${user}" scope="session" />
 											<c:if test="${not empty user.username}">
 												<c:if test="${!user.esAdmin}">
@@ -81,6 +81,7 @@
 			                                          <li><a href="fechas-en-curso">Fechas en curso</a></li>
 												</c:if>
 											 </c:if>
+											 <li><a href="torneos">Torneos</a></li>
                                        </ul>
                                     </div>
                                     <!-- /.nav-collapse -->
@@ -96,14 +97,13 @@
          <div class="inner-page-bannerMain">
             <div class="container">
                      <div class="carousel-caption">
-                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>
+                        <div class="col-lg-5 col-md-7 col-sm-12 col-xs-12"></div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                            <div class="slider-contant">
                               <h3 style="text-align:right;">Fulbito<br><span class="color-yellow">Torneos Amateur</span></h3>
                            </div>
                         </div>
                      </div>
-            
             </div>
          </div>
       </section>

@@ -43,10 +43,14 @@
             <div class="container">
                <div class="contact">
                      <div class="contact-us">
-                     <c:if test="${not empty error}">
-				        <div class="alert alert-danger">${error}</div>
+                    <c:if test="${not empty error}">
+				        <div class="alert alert-danger" style="text-align:center;" role="alert">${error}</div>
 		        	</c:if>	
-                        <h2 stye="text-align:center">Iniciar Fecha</h2>
+                        <h2 style="text-align:center">Iniciar Fecha</h2>
+                         <c:if test="${empty torneos}">
+            		   		<h4>No hay ningun torneo en curso.</h4>
+              			 </c:if>
+              			 <c:if test="${not empty torneos}">
 						<table class="table table-sm">
 						  <thead>
 						    <tr>
@@ -70,6 +74,7 @@
 						 	  </tbody>
 						   </c:forEach>
 						</table>
+					</c:if>
                      </div>
                </div>
             </div>

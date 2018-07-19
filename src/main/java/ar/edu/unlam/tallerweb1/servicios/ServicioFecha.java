@@ -16,4 +16,5 @@ public interface ServicioFecha {
 	public Integer getCantidadDeFechasActivasDeUnTorneo(Long idTorneo);
 	Integer getCantidadDeFechasDeUnTorneo(Torneo torneo);
 	Fecha getFechaByIdFecha(Long idFecha);
+	List<Fecha> getFechasEnCursoOFinalizadasDeUnTorneoByIdTorneo(Long idTorneo);
 }

@@ -11,4 +11,5 @@ public interface ServicioTorneo {
 	List<Torneo> getTorneosFinalizado();
 	List<Torneo> getTorneosEnCurso();
 	Torneo getTorneoById(Long idTorneo);
+	List<Torneo> getTorneosEnCursoOFinalizados();
 }

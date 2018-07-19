@@ -43,12 +43,12 @@
                <div class="contact">
                   <div class="col-md-6 col-md-offset-3">
                      <div class="contact-us">
-                     <h2 stye="text-align:center">Registrar torneo</h2>
+                     <h2 class="text-center">Registrar torneo</h2>
                         <form:form action="registrar-torneo" method="POST" modelAttribute="torneo" class="comments-form">
                            <ul>
-                              <li><form:input path="nombreTorneo" id="nombreTorneo" type="text" class="required" placeholder="Nombre del torneo (*)" required="true" /></li>
-                              <li><form:input path="descripcionTorneo" type="text" id="descripcionTorneo" class="required email" placeholder="Descripcion del torneo (*)" required="true" /></li>
-                              <li><form:input path="cantidadDeEquipos" type="number" id="cantidadDeEquipos" placeholder="Cupos máximos (*)" min="4" max="50" step="2" required="true" /></li>
+                              <li><form:input path="nombreTorneo" id="nombreTorneo" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del torneo (*)" required="true" /></li>
+                              <li><form:input path="descripcionTorneo" type="text" id="descripcionTorneo" class="form-control collectes-date-chargement-min text-center" placeholder="Descripcion del torneo (*)" required="true" /></li>
+                              <li><form:input path="cantidadDeEquipos" type="number" id="cantidadDeEquipos" placeholder="Cupos máximos (*)" class="form-control collectes-date-chargement-min text-center" min="4" max="50" step="2" required="true" /></li>
                               <li><input class="btn btn-lg btn-success btn-block" type="submit" value="Registrar torneo"></li>
                            </ul>
                            <div class="hidden-me" id="contact_form_responce">

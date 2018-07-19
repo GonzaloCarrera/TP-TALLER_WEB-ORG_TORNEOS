@@ -41,7 +41,8 @@
          <div class="row">
             <div class="container">
             	<div class="contact-us">
-               <h1>Se ha creado el equipo ${equipo.nombreEquipo} correctamente.</h1>
+            	 <h2 stye="text-align:center">Fechas en preparacion</h2>
+              	 <h4>Se ha creado el equipo ${equipo.nombreEquipo} correctamente.</h4>
                </div>
             </div>
          </div>

@@ -142,6 +142,20 @@ public class ControladorTorneo {
 		modelo.put("torneo", torneo);
 		return new ModelAndView("estadisticas", modelo);
 	}
+	
+	@RequestMapping("/torneos")
+	public ModelAndView torneos() {
+		
+		ModelMap modelo = new ModelMap();
+		List<Torneo> torneos = servicioTorneo.getTorneosEnCursoOFinalizados();	
+		List<Integer> equiposIncriptos = new ArrayList<Integer>();
+		for(Torneo t : torneos){
+			equiposIncriptos.add(servicioEquipo.getListaDeEquiposByIdTorneo(t.getId()).size());
+		}
+		modelo.put("equiposIncriptos", equiposIncriptos);
+		modelo.put("torneos", torneos);
+		return new ModelAndView("torneos", modelo);
+	}
 
 
 }

@@ -122,6 +122,7 @@ public class ServicioPartidoImpl implements ServicioPartido {
 						statsE2.setPartidosEmpatados(rank.get(rank.indexOf(statsE2)).getPartidosEmpatados());
 					}
 					else{
+						statsE2.setPuntos(3L);
 						statsE2.setPartidosGanados(1L);
 					}
 				}
@@ -134,6 +135,7 @@ public class ServicioPartidoImpl implements ServicioPartido {
 					}
 					else{
 						statsE1.setPartidosEmpatados(1L);
+						statsE1.setPuntos(1L);
 					}
 					if(rank.indexOf(statsE2)!=-1){
 						statsE2.setPuntos(rank.get(rank.indexOf(statsE2)).getPuntos()+1);
@@ -143,6 +145,7 @@ public class ServicioPartidoImpl implements ServicioPartido {
 					}
 					else{
 						statsE2.setPartidosEmpatados(1L);
+						statsE2.setPuntos(1L);
 					}
 				}
 			}

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,21 +30,55 @@
       <%@include file="header.jsp" %>
       <div class="inner-information-text">
             <div class="container">
-               <h3>Fecha creada</h3>
+               <h3>Torneos</h3>
                <ul class="breadcrumb">
                   <li><a href="home">Home</a></li>
-                  <li>Seleccionar Horario Fecha</li>
-                  <li class="active">Fecha Creada</li>
+                  <li class="active">Torneos</li>
                </ul>
             </div>
       </div>
       <section id="contant" class="contant main-heading team">
          <div class="row">
             <div class="container">
-            <div class="contact-us">
-             <h2 stye="text-align:center">Fecha Creada</h2>
-               <h4>Se ha creado una fecha perteneciente al torneo ${torneo.nombreTorneo}.</h4>
-            </div>
+               <div class="contact">
+                     <div class="contact-us">
+                     <h2 stye="text-align:center">Torneos</h2>
+                      <c:if test="${empty torneos}">
+            		   		<h4>No hay ningun torneo en curso o finalizado.</h4>
+              			 </c:if>
+              			  <c:if test="${not empty torneos}">
+						<table class="table table-sm">
+						  <thead>
+						    <tr>
+						      <th scope="col">Nombre del Torneo</th>
+						      <th scope="col">Descripcion</th>
+						      <th scope="col">Equipos Inscriptos</th>
+						      <th scope="col">Estado</th>
+						      <th scope="col">Estadisticas</th>
+						    </tr>
+						  </thead>
+						  <c:forEach items="${torneos}" var="entry" varStatus="loop">
+							<tbody>
+						       <tr>
+								<td>${entry.nombreTorneo}</td>
+								<td>${entry.descripcionTorneo}</td>
+								<td>${equiposIncriptos[loop.index]}/${entry.cantidadDeEquipos}</td>
+								<td>${entry.estado}</td>
+								<td><a href='estadisticas?idTorneo=<c:out value="${entry.id}" />' class="btn btn-lg btn-success" role="button">
+      		 Ver Tabla de Posiciones</a>
+      								<a href='listado-fechas-torneo?idTorneo=<c:out value="${entry.id}" />' class="btn btn-lg btn-success" style="margin-left:0.4em" role="button">
+      		 Ver Fechas del Torneo</a></td>
+								</tr>
+						     </tbody>
+							</c:forEach>
+						</table>
+						</c:if>
+                        <c:if test="${not empty error}">
+					        <h4><span>${error}</span></h4>
+					        <br>
+				        </c:if>
+                     </div>
+               </div>
             </div>
          </div>
       </section>

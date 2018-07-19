@@ -33,151 +33,78 @@
             <div class="row">
                <div class="col-lg-4 col-sm-4 col-xs-12">
                   <aside id="sidebar" class="left-bar">
-                     <div class="banner-sidebar">
-                        <img class="img-responsive" src="images/img-05.jpg" alt="#" />
-                        <h3>Grandes partidos..</h3>
+                     <div class="banner-sidebar fondo-cajas-home">
+                        <img class="img-responsive" src="images/ronaldo1.jpg" alt="#" />
+                        <h3>Grandes partidos...</h3>
                      </div>
                   </aside>
-                  <h4>Fixture</h4>
                   <aside id="sidebar" class="left-bar">
-                     <div class="feature-matchs">
-                        <div class="team-btw-match">
-                           <ul>
-                              <li>
-                                 <img src="images/img-01_002.png" alt="">
-                                 <span>Portugal</span>
-                              </li>
-                              <li class="vs"><span>vs</span></li>
-                              <li>
-                                 <img src="images/img-02.png" alt="">
-                                 <span>Germany</span>
-                              </li>
-                           </ul>
-                           <ul>
-                              <li>
-                                 <img src="images/img-03_002.png" alt="">
-                                 <span>Portugal</span>
-                              </li>
-                              <li class="vs"><span>vs</span></li>
-                              <li>
-                                 <img src="images/img-04_003.png" alt="">
-                                 <span>Germany</span>
-                              </li>
-                           </ul>
-                           <ul>
-                              <li>
-                                 <img src="images/img-05_002.png" alt="">
-                                 <span>Portugal</span>
-                              </li>
-                              <li class="vs"><span>vs</span></li>
-                              <li>
-                                 <img src="images/img-06.png" alt="">
-                                 <span>Germany</span>
-                              </li>
-                           </ul>
-                           <ul>
-                              <li>
-                                 <img src="images/img-07_002.png" alt="">
-                                 <span>Portugal</span>
-                              </li>
-                              <li class="vs"><span>vs</span></li>
-                              <li>
-                                 <img src="images/img-08.png" alt="">
-                                 <span>Germany</span>
-                              </li>
-                           </ul>
-                           <ul>
-                              <li>
-                                 <img src="images/img-05_002.png" alt="">
-                                 <span>Portugal</span>
-                              </li>
-                              <li class="vs"><span>vs</span></li>
-                              <li>
-                                 <img src="images/img-06.png" alt="">
-                                 <span>Germany</span>
-                              </li>
-                           </ul>
-                        </div>
+                     <div class="banner-sidebar fondo-cajas-home">
+                        <img class="img-responsive" src="images/messi1.jpg" alt="#" />
+                        	<h3><a href="torneos">Ver estadisticas</a></h3>
                      </div>
                   </aside>
-                  <h4>Tabla de posiciones</h4>
+               <c:if test="${not empty user}">
+               	  
+                  <h2 style="text-align:center;">Proximos partidos</h2>
+                  
                   <aside id="sidebar" class="left-bar">
                      <div class="feature-matchs">
+                     <c:if test="${not empty partidos}">
                         <table class="table table-bordered table-hover">
                            <thead>
                               <tr>
-                                 <th>#</th>
-                                 <th>Equipo</th>
-                                 <th>P</th>
-                                 <th>W</th>
-                                 <th>L</th>
+                                 <th>Horario</th>
+                                 <th>Partido</th>
+                                 <th>Torneo</th>
                               </tr>
                            </thead>
-                           <tbody>
+                             <c:forEach items="${partidos}" var="entry" varStatus="loop">
+                           <tbody>      
                               <tr>
-                                 <td>1</td>
-                                 <td><img src="images/img-01_004.png" alt="">Liverpool</td>
-                                 <td>10</td>
-                                 <td>12</td>
-                                 <td>20</td>
-                              </tr>
-                              <tr>
-                                 <td>2</td>
-                                 <td><img src="images/img-02_002.png" alt="">Chelsea</td>
-                                 <td>10</td>
-                                 <td>12</td>
-                                 <td>20</td>
-                              </tr>
-                              <tr>
-                                 <td>3</td>
-                                 <td><img src="images/img-03_003.png" alt="">Norwich City</td>
-                                 <td>20</td>
-                                 <td>15</td>
-                                 <td>20</td>
-                              </tr>
-                              <tr>
-                                 <td>4</td>
-                                 <td><img src="images/img-04_002.png" alt="">West Brom</td>
-                                 <td>60</td>
-                                 <td>10</td>
-                                 <td>60</td>
-                              </tr>
-                              <tr>
-                                 <td>5</td>
-                                 <td><img src="images/img-05.png" alt="">sunderland</td>
-                                 <td>30</td>
-                                 <td>06</td>
-                                 <td>30</td>
-                              </tr>
-                              <tr>
-                                 <td>1</td>
-                                 <td><img src="images/img-01_004.png" alt="">Liverpool</td>
-                                 <td>10</td>
-                                 <td>12</td>
-                                 <td>20</td>
-                              </tr>
+                                 <td>${entry.horario}</td>
+                                 <td>${entry.equipo1.nombreEquipo} vs ${entry.equipo2.nombreEquipo}</td>
+                                 <td>${entry.fecha.torneo.nombreTorneo}</td>
+                              </tr>    
                            </tbody>
+                           </c:forEach>  
                         </table>
+                        </c:if>
+                        <c:if test="${empty partidos}">
+                        <h3>No tienes partidos proximos a jugar.</h3>
+                        </c:if>
                      </div>
                   </aside>
+               </c:if>
+                  
                </div>
-               <div class="col-lg-8 col-sm-8 col-xs-12">
-                  <div class="news-post-holder">
+               <div class="col-lg-8 col-sm-8 col-xs-12" >
+                  <div class="news-post-holder" >
                      <div class="news-post-widget">
-                        <img class="img-responsive" src="images/img-02_003.jpg" alt="">
+                        <img class="img-responsive fondo-cajas-home" src="images/leicester.jpg" alt="">
                         <div class="news-post-detail">
                            <span class="date">20 marzo 2018</span>
-                           <h2><a href="registrar-equipo">Arma tu equipo</a></h2>
+                           <c:if test="${not empty user}">
+                           		<h2><a href="registrar-equipo">Registra tu equipo</a></h2>
+                           </c:if>
+                           <c:if test="${empty user}">
+                           		<h2><a href="registrar">Registra tu equipo</a></h2>
+                           </c:if>    
                            <p>En simples pasos registra tu equipo y participa de los torneos</p>
                         </div>
                      </div>
                   </div>
                   <div class="news-post-holder">
                      <div class="news-post-widget">
-                        <img class="img-responsive" src="images/img-03_003.jpg" alt="">
+                        <img class="img-responsive fondo-cajas-home" src="images/mancity.jpg" alt="">
                         <div class="news-post-detail">
                            <span class="date">21 mayo 2018</span>
-                           <h2><a href="torneos-en-curso">Registrate en los torneos</a></h2>
+                           <c:if test="${not empty user}">
+                           		<h2><a href='listado-torneo-inscripcion-abierta?idUsuario=<c:out value="${user.id}" />'>Registrate en los torneos</a></h2>
+                           </c:if>
+                           <c:if test="${empty user}">
+                           		<h2><a href="registrar">Registrate en los torneos</a></h2>
+                           </c:if>
                            <p>Registra a tu equipo en los horarios mas comodos para vos y tus amigos</p>
                         </div>
                      </div>

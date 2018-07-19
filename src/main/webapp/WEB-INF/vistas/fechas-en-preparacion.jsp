@@ -47,6 +47,10 @@
 		        	</c:if>	
                      <div class="contact-us">
                         <h2 stye="text-align:center">Fechas en preparacion</h2>
+                         <c:if test="${empty fechas}">
+            		   		<h4>No hay ninguna fecha en preparación.</h4>
+              			 </c:if>
+              			  <c:if test="${not empty fechas}">
 							<table class="table table-sm">
 							  <thead>
 							    <tr>
@@ -70,6 +74,7 @@
 							  </tbody>
 							  </c:forEach>
 							</table>
+							</c:if>
                      </div>
                </div>
             </div>

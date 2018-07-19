@@ -43,7 +43,8 @@
                <div class="contact">
 				<div class="contact-us">
                   <div class="col-md-8 col-md-offset-2">
-						<h1>Se ha creado el torneo ${torneo.nombreTorneo} exitosamente.</h1>
+                  	<h2 style="text-align:center;">Torneo Creado</h2>	
+					<h4>Se ha creado el torneo ${torneo.nombreTorneo} exitosamente.</h4>
                   </div>
                   </div>
                </div>

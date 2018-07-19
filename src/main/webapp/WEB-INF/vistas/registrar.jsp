@@ -20,7 +20,7 @@
             
 		<div class="middlePage" >
 		  <div class="page-header">
-		    <h1 class="logo">Fulbito</h1>
+		    <h2 class="logo">Fulbito <span style="color:yellow;">Torneos Amateur</span></h2>
 		  </div>
 		      <div class="container">
 		          <div class="row centered-form">

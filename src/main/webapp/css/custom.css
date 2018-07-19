@@ -140,6 +140,13 @@
      top: 0;
      min-height: 150px;
 }
+.fondo-cajas-home{
+	box-shadow: 0px 0px 16px -2px rgba(0,0,0,1);
+	transition:0.3s;
+}
+.fondo-cajas-home:hover{
+	filter: saturate(180%);
+}
  .social-icons li a {
      height: 40px;
      width: 40px;
@@ -552,7 +559,7 @@
  .right-match-time {
      text-align: center;
      padding: 63px 0 62px;
-     background: url('images/match-start-img.png');
+     background: url('images/ronaldo-login.jpg');
      background-size: cover;
      color: #fff;
      background-repeat: no-repeat;
@@ -773,7 +780,6 @@
      width: 100%;
      margin: 0 0 30px;
      position: relative;
-     box-shadow: 0 10px 20px -25px rgba(50,50,50,1);
      border: solid #e1e1e1 1px;
      padding: 0 0 15px 0;
 }
@@ -931,7 +937,6 @@
      width: 100%;
      position: relative;
      line-height: 30px;
-     padding-left: 35px;
      margin-bottom: 15px;
      font-weight: 300;
      font-size: 14px;
@@ -957,7 +962,7 @@
      float: left;
      width: 100%;
      min-height: 500px;
-     background-image: url('/images/about.png');
+     background-image: url('/images/ronaldo-login.jpg');
      background-position: center center;
      background-repeat: no-repeat;
      background-size: cover;
@@ -968,11 +973,12 @@
      float: left;
      width: 100%;
      min-height: 400px;
-     background-image: url('../images/main-slider-img1.jpg');
+     background-image: url('../images/messi-ronaldo.jpg');
      background-position: center center;
      background-repeat: no-repeat;
      background-size: cover;
      position: relative;
+     box-shadow: 1px 1px 10px 1px #4e3d3dd1;
 }
 
  .inner-information {

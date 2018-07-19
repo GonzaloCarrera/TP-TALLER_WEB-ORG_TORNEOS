@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,21 +30,36 @@
       <%@include file="header.jsp" %>
       <div class="inner-information-text">
             <div class="container">
-               <h3>Fecha creada</h3>
+               <h3>Fixture</h3>
                <ul class="breadcrumb">
                   <li><a href="home">Home</a></li>
-                  <li>Seleccionar Horario Fecha</li>
-                  <li class="active">Fecha Creada</li>
+                  <li class="active">Fixture</li>
                </ul>
             </div>
       </div>
       <section id="contant" class="contant main-heading team">
          <div class="row">
             <div class="container">
-            <div class="contact-us">
-             <h2 stye="text-align:center">Fecha Creada</h2>
-               <h4>Se ha creado una fecha perteneciente al torneo ${torneo.nombreTorneo}.</h4>
-            </div>
+               <div class="contact">
+                  <div class="col-md-8 col-md-offset-2">
+                     <div class="contact-us">
+                     <h3 style="text-align:center;">${fecha.torneo.nombreTorneo }</h3>
+					 <h2 style="text-align:center;">Fixture</h2>		 	  
+					 <table class="table table-sm">
+						  <c:forEach items="${partidos}" var="entry">
+							<tbody>
+						     <tr style="text-align:center;">
+									<td style="width: 25%;">${entry.equipo1.nombreEquipo}</td>
+									<td style="width: 25%;">${entry.golesEquipo1 }</td>
+									<td style="width: 25%;">${entry.golesEquipo2}</td>
+									<td style="width: 25%;">${entry.equipo2.nombreEquipo}</td>
+							</tr>
+						  </tbody>
+				   		 </c:forEach>	
+						</table>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </section>

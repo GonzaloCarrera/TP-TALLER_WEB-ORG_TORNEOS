@@ -46,7 +46,11 @@
 			        <br>
 		        	</c:if>	
                      <div class="contact-us">
-                        <h2 stye="text-align:center">Asigna horario a tus próximos partidos</h2>					      	
+                        <h2 stye="text-align:center">Asigna horario a tus próximos partidos</h2>
+                             <c:if test="${empty horarios}">
+            		   		<h4>No tienes ningun partido al cual asignar horario.</h4>
+              			 </c:if>
+              			  <c:if test="${not empty horarios}">					      	
 							<table class="table table-sm">
 							  <thead>
 							    <tr>
@@ -74,6 +78,7 @@
 							  </tbody>
 							  </c:forEach>
 							</table>
+						</c:if>
                      </div>
                </div>
             </div>

@@ -41,7 +41,8 @@
          <div class="row">
             <div class="container">
             <div class="contact-us">
-				<h1>Registraste correctamente el rango horario de disponibilidad para el partido del torneo ${horario.fecha.torneo.nombreTorneo}.</h1>
+            <h2 style="text-align:center">Horario Registrado</h2>
+				<h4>Registraste correctamente el rango horario de disponibilidad para el partido del torneo ${horario.fecha.torneo.nombreTorneo}.</h4>
             </div>
             </div>
          </div>

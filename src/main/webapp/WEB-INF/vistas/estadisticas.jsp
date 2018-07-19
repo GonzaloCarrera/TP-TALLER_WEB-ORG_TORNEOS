@@ -30,10 +30,10 @@
       <%@include file="header.jsp" %>
       <div class="inner-information-text">
             <div class="container">
-               <h3>Fechas en curso</h3>
+               <h3>Tabla de Posiciones</h3>
                <ul class="breadcrumb">
                   <li><a href="home">Home</a></li>
-                  <li class="active">Fechas en curso</li>
+                  <li class="active">Tabla de Posiciones</li>
                </ul>
             </div>
       </div>
@@ -41,15 +41,20 @@
          <div class="row">
             <div class="container">
                <div class="contact">
+               <div class="contact-us">
+               <c:if test="${empty rank}">
+               <h2 style="text-align:center">Tabla de Posiciones</h2>
+               <h4>Todavia no se ha disputado ninguna fecha.</h4>
+               </div>
+               </c:if>
                		<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
 			        <br>
 		        	</c:if>	
+		        	<c:if test="${not empty rank}">
                   <div class="col-md-8 col-md-offset-2">
-                     <div class="contact-us">
-					 <h2 style="text-align:center;">
-				 	 ${torneo.nombreTorneo}<br/>
-				 	 ${torneo.descripcionTorneo}</h2>
+                     <h3 style="text-align:center;">${torneo.descripcionTorneo}</h3>
+					 <h2 style="text-align:center;">${torneo.nombreTorneo}</h2>		 	  
 					 <table class="table table-sm">
 						  <thead>
 						    <tr>
@@ -84,8 +89,8 @@
 						  </tbody>
 				   		 </c:forEach>		
 						</table>
-                     </div>
                   </div>
+                  </c:if>	
                </div>
             </div>
          </div>

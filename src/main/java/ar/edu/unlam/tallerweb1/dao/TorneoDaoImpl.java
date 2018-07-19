@@ -53,4 +53,12 @@ public class TorneoDaoImpl extends AbstractDao implements TorneoDao{
 				.list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Torneo> getTorneosEnCursoOFinalizados() {
+		return getSession().createCriteria(Torneo.class)
+				.add(Restrictions.ne("estado", "Inscripcion Abierta"))
+				.list();
+	}
+	
 }

@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<div class="container">
+<div class="container" >
             <div class="row">
                <div class="col-md-4">
                   <div class="full">
                      <div class="footer-widget">
                         <div class="footer-logo">
-                           <a href="#"><img src="images/footer-logo.png" alt="#" /></a>
+                          <div class="slider-contant">
+                              <h3 style="font-size:1.4em">Fulbito <span class="color-yellow">Torneos Amateur</span></h3>
+                           </div>
                         </div>
-                        <p>Nuestros eventos son los mejores organizados del pais.</p>
+                        <p>Organizamos torneos de un modo único.</p>
                      </div>
                   </div>
                </div>
-               <div class="col-md-2">
+               <div class="col-md-4">
                   <div class="full">
                      <div class="footer-widget">
                         <h3>Menu</h3>
@@ -34,16 +36,17 @@
 			                                        
 												</c:if>
 											 </c:if>
+											 <li><a href="torneos">Torneos</a></li>
                         </ul>
                      </div>
                   </div>
                </div>
-               <div class="col-md-3">
+               <div class="col-md-4">
                   <div class="full">
                      <div class="footer-widget">
                         <h3>Contactenos</h3>
                         <ul class="address-list">
-                           <li><i class="fa fa-map-marker"></i> Telefono y correo..</li>
+                           <li> Telefono y correo..</li>
                            <li><i class="fa fa-phone"></i> 123 456 7890</li>
                            <li><i style="font-size:20px;top:5px;" class="fa fa-envelope"></i> fulbito@gmail.com</li>
                         </ul>

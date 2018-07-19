@@ -41,7 +41,8 @@
       <div class="contact-us">
          <div class="row">
             <div class="container">
-               <h1>Tu equipo ${equipo.nombreEquipo} ha quedado inscripto al torneo ${torneo.nombreTorneo}.</h1>
+               <h2 stye="text-align:center">Equipo Inscripto</h2>
+               <h4>Tu equipo ${equipo.nombreEquipo} ha quedado inscripto al torneo ${torneo.nombreTorneo}.</h4>
             </div>
          </div>
       </div>

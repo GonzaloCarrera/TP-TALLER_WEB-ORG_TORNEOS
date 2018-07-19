@@ -1,10 +1,12 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -87,8 +89,6 @@ public class ServicioFechaImpl implements ServicioFecha{
 		Boolean condicion = false;
 		do{
 			condicion = macheo(equipos, partidosDeLaFechaNueva, mapaDeEquiposDisponibles, fecha);
-			//Ver que hacer aca... por que se puede quedear en un loop
-			
 		}while(!condicion);
 		
 		for(Partido partido : partidosDeLaFechaNueva) {
@@ -127,22 +127,56 @@ public class ServicioFechaImpl implements ServicioFecha{
 		Horario horarioEquipo =servicioHorario.getHorarioPorFechaYEquipo(fecha, equipo);
 		Horario horarioEquipoDisponible =servicioHorario.getHorarioPorFechaYEquipo(fecha, equipoDisponible);
 		
+		if(horarioEquipo.getHoraInicio() == null || horarioEquipoDisponible.getHoraInicio() == null || horarioEquipo.getHoraFin() == null || horarioEquipoDisponible.getHoraFin() == null) {
+			return this.horarioAutomatico(equipo,equipoDisponible,fecha,parido,horarioEquipo,horarioEquipoDisponible);
+		}else {
+			
 		if(horarioEquipo.getHoraInicio().before(horarioEquipoDisponible.getHoraInicio()) && horarioEquipo.getHoraFin().after(horarioEquipoDisponible.getHoraInicio())){
 			parido.setHorario(horarioEquipoDisponible.getHoraInicio());
-			horarioEquipo.setMacheado(true);
-			horarioEquipoDisponible.setMacheado(true);
+				guardarHorarioEquipo(horarioEquipo);
+				guardarHorarioEquipo(horarioEquipoDisponible);
 			return true;
 		}else if(horarioEquipoDisponible.getHoraInicio().before(horarioEquipo.getHoraInicio()) && horarioEquipoDisponible.getHoraFin().after(horarioEquipo.getHoraInicio())) {
 			parido.setHorario(horarioEquipo.getHoraInicio());
-			horarioEquipo.setMacheado(true);
-			horarioEquipoDisponible.setMacheado(true);
+				guardarHorarioEquipo(horarioEquipo);
+				guardarHorarioEquipo(horarioEquipoDisponible);
 			return true;
+			}else {
+				return this.horarioAutomatico(equipo,equipoDisponible,fecha,parido,horarioEquipo,horarioEquipoDisponible);
+			}
 		}
-		return false;
+	}
+
+	private void guardarHorarioEquipo(Horario horarioEquipo) {
+		horarioEquipo.setMacheado(true);
+		horarioEquipo.setPermitirSeleccionHorario(false);
+		servicioHorario.guardarHorario(horarioEquipo);
+	}
+
+	private Boolean horarioAutomatico(Equipo equipo, Equipo equipoDisponible, Fecha fecha, Partido partido, Horario horarioEquipo, Horario horarioEquipoDisponible) {
+		Integer horaRand = 0;
+		Integer diaRand = 0;
+		Calendar calendar = Calendar.getInstance();
+		while(horaRand<10) {
+			horaRand = new Random().nextInt(16)+1;
+			diaRand =  new Random().nextInt(3);
+			Integer hora = (int) (horaRand * 1.5f);
+			calendar.setTime(fecha.getHoraInicio());
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)+ diaRand, hora, 0);
+			if(calendar.getTime().before(fecha.getHoraInicio()) || calendar.getTime().after(fecha.getHoraFin()) || hora < 14) {
+				horaRand =0;
+		}
+		}
+		
+		partido.setHorario(calendar.getTime());
+		guardarHorarioEquipo(horarioEquipo);
+		guardarHorarioEquipo(horarioEquipoDisponible);
+		return true;
 	}
 
 	private List<Equipo> equiposQueJugaronConEquipo(Equipo equipo, List<Partido> partidos) {
 		Set<Equipo> equipos = new HashSet<>();
+		equipos.add(equipo);
 		for (Partido partido : partidos) {
 			if(partido.getEquipo1().equals(equipo) || partido.getEquipo2().equals(equipo)) {
 				equipos.add(partido.getEquipo1());
@@ -172,6 +206,11 @@ public class ServicioFechaImpl implements ServicioFecha{
 	@Override
 	public Fecha getFechaByIdFecha(Long idFecha) {
 		return fechaDao.getFechaByIdFecha(idFecha);
+	}
+
+	@Override
+	public List<Fecha> getFechasEnCursoOFinalizadasDeUnTorneoByIdTorneo(Long idTorneo) {
+		return fechaDao.getFechasEnCursoOFinalizadasDeUnTorneoByIdTorneo(idTorneo);
 	}
 	
 	

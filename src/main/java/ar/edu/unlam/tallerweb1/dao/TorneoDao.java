@@ -11,4 +11,5 @@ public interface TorneoDao {
 	List<Torneo> getTorneosEnCurso();
 	List<Torneo> getTorneosFinalizado();
 	Torneo getTorneoById(Long idTorneo);
+	List<Torneo> getTorneosEnCursoOFinalizados();
 }

@@ -33,7 +33,7 @@
                <h3>FECHAS PERTENECIENTES AL TORNEO</h3>
                <ul class="breadcrumb">
                   <li><a href="home">Home</a></li>
-                  <li class="active">Fechas en curso</li>
+                  <li class="active">Fechas del Torneo</li>
                </ul>
             </div>
       </div>
@@ -41,22 +41,29 @@
          <div class="row">
             <div class="container">
                <div class="contact">
+               
                		<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
 			        <br>
 		        	</c:if>	
+		        	
+               <div class="contact-us">
+               <h2 stye="text-align:center">Fechas pertenecientes al torneo</h2>	
+               <c:if test="${empty fechas}">
+               <h4>Todavia no se ha disputado ninguna fecha.</h4>
+               </div>
+               </c:if>
+               <c:if test="${not empty fechas}">
                   <div class="col-md-8 col-md-offset-2">
-                     <div class="contact-us">
-                        <h2 stye="text-align:center">Fechas pertenecientes al torneo</h2>					      	
+                        				      	
 							<table class="table table-sm">
 							  <thead>
 							    <tr>
 							   	  <th scope="col">Fecha</th>
-							      <th scope="col">idFecha</th>
 							      <th scope="col">estado</th>
-							      <th scope="col">t.nombreTorneo</th>
-							      <th scope="col">t.cantidadDeEquipos</th>
-							      <th scope="col">t.estado</th>
+							      <th scope="col">Torneo</th>
+							      <th scope="col">Cupo de Equipos</th>
+							      <th scope="col">Opciones</th>
 							    </tr>
 							  </thead>
 							  
@@ -67,17 +74,17 @@
 							      <th scope="row">
 							 	  <c:set var="numberOfRows" value="${numberOfRows+1}"/>
 								  <c:out value="${numberOfRows}"/></th>
-							      <td>${entry.id}</td>
 							      <td>${entry.estado}</td>
 							      <td>${entry.torneo.nombreTorneo}</td>
 							      <td>${entry.torneo.cantidadDeEquipos}</td>
-							      <td>${entry.torneo.estado}</td>
+							      <td><a href='fixture?idFecha=<c:out value="${entry.id}" />' class="btn btn-lg btn-success btn-block" role="button">
+      		 Ver Fixture</a></td>
 							    </tr>
 							  </tbody>
 						   	</c:forEach>
 						</table>
-                     </div>
                   </div>
+                </c:if>
                </div>
             </div>
          </div>

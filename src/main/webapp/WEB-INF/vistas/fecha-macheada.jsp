@@ -42,6 +42,7 @@
             <div class="container">
             	<div class="contact-us">
             	<c:if test="${empty error}">
+            		<h2 style="text-align:center">Fecha Macheada</h2>
              	   <h4>La fecha perteneciente al torneo ${torneo.nombreTorneo} se ha macheado correctamente.</h4>
                 </c:if>
                 <c:if test="${not empty error}">

@@ -46,17 +46,17 @@
                      <h2 stye="text-align:center">Registrar equipo</h2>
                         <form:form action="registrar-equipo" method="POST" class="comments-form">
                         <ul>
-                              <li><input id="nombreEquipo" name="nombreEquipo" type="text" class="form-control" placeholder="Nombre del Equipo (*)" required/><input type="hidden" name="idUsuario" value="${user.id}" id="usuario"/>    </li>
-                              <li><input id="nombreJugador1" name="nombreJugador1" type="text" class="form-control email" placeholder="Nombre del jugador 1 (*)" required /></li>
-                              <li><input id="nombreJugador2" name="nombreJugador2" type="text" class="form-control" placeholder="Nombre del jugador 2 (*)" required /></li>                       
-                              <li><input id="nombreJugador3" name="nombreJugador3" type="text" class="form-control" placeholder="Nombre del jugador 3 (*)" required /></li>
-                              <li><input id="nombreJugador4" name="nombreJugador4" type="text" class="form-control" placeholder="Nombre del jugador 4 (*)" required /></li>
-                              <li><input id="nombreJugador5" name="nombreJugador5" type="text" class="form-control" placeholder="Nombre del jugador 5 (*)" required /></li>
-                              <li><input id="nombreJugador6" name="nombreJugador6" type="text" class="form-control" placeholder="Nombre del jugador 6 (*)" required /></li>
-                              <li><input id="nombreJugador7" name="nombreJugador7" type="text" class="form-control" placeholder="Nombre del jugador 7 (*)" required /></li>
-                              <li><input id="nombreJugador8" name="nombreJugador8" type="text" class="form-control" placeholder="Nombre del jugador 8 (*)" required /></li>
-                              <li><input id="nombreJugador9" name="nombreJugador9" type="text" class="form-control" placeholder="Nombre del jugador 9 (*)" required /></li>
-                              <li><input id="nombreJugador10" name="nombreJugador10" type="text" class="form-control" placeholder="Nombre del jugador 10 (*)" required /></li>
+                              <li><input id="nombreEquipo" name="nombreEquipo" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del Equipo (*)" required/><input type="hidden" name="idUsuario" value="${user.id}" id="usuario"/>    </li>
+                              <li><input id="nombreJugador1" name="nombreJugador1" type="text" class="form-control collectes-date-chargement-min text-center email" placeholder="Nombre del jugador 1 (*)" required /></li>
+                              <li><input id="nombreJugador2" name="nombreJugador2" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 2 (*)" required /></li>                       
+                              <li><input id="nombreJugador3" name="nombreJugador3" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 3 (*)" required /></li>
+                              <li><input id="nombreJugador4" name="nombreJugador4" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 4 (*)" required /></li>
+                              <li><input id="nombreJugador5" name="nombreJugador5" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 5 (*)" required /></li>
+                              <li><input id="nombreJugador6" name="nombreJugador6" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 6 (*)" required /></li>
+                              <li><input id="nombreJugador7" name="nombreJugador7" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 7 (*)" required /></li>
+                              <li><input id="nombreJugador8" name="nombreJugador8" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 8 (*)" required /></li>
+                              <li><input id="nombreJugador9" name="nombreJugador9" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 9 (*)" required /></li>
+                              <li><input id="nombreJugador10" name="nombreJugador10" type="text" class="form-control collectes-date-chargement-min text-center" placeholder="Nombre del jugador 10 (*)" required /></li>
                               <li><input class="btn btn-lg btn-success btn-block" type="submit" value="Registrar Equipo"></li>
                            </ul>
                            <div class="hidden-me" id="contact_form_responce">

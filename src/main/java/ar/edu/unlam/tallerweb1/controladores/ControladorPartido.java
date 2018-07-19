@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Fecha;
 import ar.edu.unlam.tallerweb1.modelo.Horario;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
@@ -54,5 +55,16 @@ public class ControladorPartido {
 		modelo.put("fechaNumero", fechaNumero);
 		modelo.put("partidos", partidos);
 		return new ModelAndView("proximos-partidos", modelo);
+	}
+	
+	@RequestMapping("/fixture")
+	public ModelAndView fixture(@RequestParam("idFecha") Long idFecha) {
+
+		ModelMap modelo = new ModelMap();
+		Fecha fecha = servicioFecha.getFechaByIdFecha(idFecha);
+		List<Partido> partidos = servicioPartido.getListaDePartidosDeLaFechaYTorneo(fecha,fecha.getTorneo());
+		modelo.put("partidos", partidos);
+		modelo.put("fecha", fecha);
+		return new ModelAndView("fixture", modelo);
 	}
 }

@@ -1,11 +1,15 @@
 @charset "UTF-8";
 /* CSS Document */
 
-body {
-    width:100px;
+body {  
+  	width:100px;
 	height:100px;
-  	background-image: url("../images/match-start-img.png");
+  	background-image: url("../images/stadium.png");
 	font-family: 'Raleway', sans-serif;
+	 float: left;
+     min-height: 400px;
+     background-repeat: no-repeat;
+     background-size: cover;
 }
 
 p {

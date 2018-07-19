@@ -41,4 +41,9 @@ public class ServicioTorneoImpl implements ServicioTorneo{
 	public Torneo getTorneoById(Long idTorneo) {
 		return torneoDao.getTorneoById(idTorneo);
 	}
+
+	@Override
+	public List<Torneo> getTorneosEnCursoOFinalizados() {
+		return torneoDao.getTorneosEnCursoOFinalizados();
+	}
 }
