@@ -23,11 +23,17 @@
    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
    <script>
 	    function validacion() {
-	    	document.getElementById("hayError").innerHTML = ""
+	    	document.getElementById("hayError").innerHTML = "";
+	    	var horaI = document.getElementById("horaInicio").value.substring(11,13);
+	    	var horaF = document.getElementById("horaFin").value.substring(11,13);
 	    	  if (document.getElementById("horaFin").value<document.getElementById("horaInicio").value) {
-	    	    document.getElementById("hayError").innerHTML = "La hora de fin no puede ser menor a la hora de inicio.";
+	    	    document.getElementById("hayError").innerHTML += "La hora de fin no puede ser menor a la hora de inicio.";
 	    	    return false;
 	    	  }
+	    	  if (horaI<10||horaF>=23) {
+		    	  document.getElementById("hayError").innerHTML += "Selecciona una hora dentro del rango horario de 10am a 22.59.";
+		    	  return false;
+		      }
 	    	  return true;
 	    	}
 	    </script>

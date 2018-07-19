@@ -72,7 +72,6 @@ public class ControladorFecha {
 										 @RequestParam("horaInicio") String horaInicio,
 										 @RequestParam("horaFin") String horaFin) {
 		ModelMap modelo = new ModelMap();
-		Calendar calendar = Calendar.getInstance();
 		horaInicio = horaInicio.replace("T" , " ");
 		horaFin = horaFin.replace("T" , " ");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -92,8 +91,6 @@ public class ControladorFecha {
 			Horario horario = new Horario();
 			horario.setEquipo(e);
 			horario.setFecha(fecha);
-			horario.setHoraInicio(calendar.getTime());
-			horario.setHoraFin(calendar.getTime());
 			servicioHorario.guardarHorario(horario);
 		}
 		if(servicioFecha.getFechasDeUnTorneoByIdTorneo(idTorneo).size()>=(torneo.getCantidadDeEquipos()-1)){

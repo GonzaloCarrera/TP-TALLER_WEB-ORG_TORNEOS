@@ -47,6 +47,10 @@
 		        	</c:if>	
                      <div class="contact-us">
                         <h2 stye="text-align:center">Inscribirme a un torneo</h2>
+                         <c:if test="${empty torneos}">
+            		   		<h4>No hay ningun torneo con inscripción abierta.</h4>
+              			 </c:if>
+              			 <c:if test="${not empty torneos}">
 							<table class="table table-sm">
 							  <thead>
 							    <tr>
@@ -73,6 +77,7 @@
 							  </tbody>
 							  </c:forEach>
 							</table>
+							</c:if>
                      </div>
                </div>
             </div>
